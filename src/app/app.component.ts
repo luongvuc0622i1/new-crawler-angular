@@ -1,13 +1,45 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { TransferService } from './service/transfer.service';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'New-Crawler-Angular';
+  showModal: boolean = false;
+  showModalConfig: boolean = false;
+  showModalDelete: boolean = false;
+  showModalSignup: boolean = false;
+  showModalNewPassword: boolean = false;
+
+  constructor(private transferService: TransferService) {}
+
+  ngOnInit(): void {
+    this.transferService.sharedData$.subscribe((data) => {
+      this.showModal = data.showModal;
+      this.showModalConfig = data.showModalConfig;
+      this.showModalDelete = data.showModalDelete;
+      this.showModalSignup = data.showModalSignup;
+      this.showModalNewPassword = data.showModalNewPassword;
+    });
+  }
+
+  closeModal(): void {
+    this.transferService.setShowModal(false);
+    this.transferService.setShowModalConfig(false);
+    this.transferService.setShowModalDelete(false);
+    this.transferService.setShowModalSignup(false);
+    this.showModalNewPassword = false;
+  }
+
+  handleClose(event: MouseEvent): void {
+    if (!(event.target as HTMLElement).closest('.modal-content') && !this.showModalDelete && !this.showModalNewPassword) {
+      this.transferService.setShowModal(false);
+      this.transferService.setShowModalConfig(false);
+      this.transferService.setShowModalDelete(false);
+      this.transferService.setShowModalSignup(false);
+      this.showModalNewPassword = false;
+    }
+  }
 }

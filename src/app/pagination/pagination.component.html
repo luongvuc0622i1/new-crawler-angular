@@ -1,0 +1,25 @@
+<div class="pagination">
+  <button *ngIf="currentPage != 1" class="pag" (click)="firstPage()">«</button>
+  <button *ngIf="currentPage != 1" class="pag" (click)="prevPage()">‹</button>
+  <div *ngIf="currentPage == 1" style="width: 67px;"></div>
+
+  <button class="pag"
+    [ngStyle]="{ 'color': 1 == currentPage ? 'var(--primary-color)' : '', 'font-weight': 1 == currentPage ? '600' : '', 'background-color': 1 == currentPage ? 'var(--secondary-active-color)' : '' }"
+    (click)="choosePage(1)">1</button>
+  <ng-container *ngFor="let _ of [1, 2, 3]">
+    <button class="poi" *ngIf="pageNumbers.length && !pageNumbers.includes(2)"></button>
+  </ng-container>
+  <button class="pag" *ngFor="let num of pageNumbers"
+    [ngStyle]="{ 'color': num == currentPage ? 'var(--primary-color)' : '', 'font-weight': num == currentPage ? '600' : '', 'background-color': num == currentPage ? 'var(--secondary-active-color)' : '' }"
+    (click)="choosePage(num)">{{num}}</button>
+  <ng-container *ngFor="let _ of [1, 2, 3]">
+    <button class="poi" *ngIf="pageNumbers.length && !pageNumbers.includes(totalPages - 1)"></button>
+  </ng-container>
+  <button class="pag" *ngIf="totalPages != 1"
+    [ngStyle]="{ 'color': totalPages == currentPage ? 'var(--primary-color)' : '', 'font-weight': totalPages == currentPage ? '600' : '', 'background-color': totalPages == currentPage ? 'var(--secondary-active-color)' : '' }"
+    (click)="choosePage(totalPages)">{{totalPages}}</button>
+
+  <button *ngIf="currentPage != totalPages" class="pag" (click)="nextPage()">›</button>
+  <button *ngIf="currentPage != totalPages" class="pag" (click)="lastPage()">»</button>
+  <div *ngIf="currentPage == totalPages" style="width: 67px;"></div>
+</div>
