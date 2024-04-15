@@ -299,7 +299,9 @@ button {
     box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, .1);
 }
 
-.button, .pag, .select {
+.button,
+.pag,
+.select {
     color: var(--layout-color);
 }
 
@@ -473,6 +475,7 @@ a:focus {
 
 /* Kiểu CSS cho màn hình desktop */
 @media only screen and (min-width: 768px) {
+
     /* Đặt các kiểu CSS cho màn hình desktop ở đây */
     .class-desktop {
         display: block;
@@ -489,6 +492,7 @@ a:focus {
 
 /* Kiểu CSS cho màn hình mobile */
 @media only screen and (max-width: 767px) {
+
     /* Đặt các kiểu CSS cho màn hình mobile ở đây */
     .class-desktop {
         display: none;
@@ -507,7 +511,8 @@ a:focus {
     }
 }
 
-.ant-descriptions-row > td, .ant-descriptions-row > th {
+.ant-descriptions-row>td,
+.ant-descriptions-row>th {
     padding-bottom: 4px !important;
 }
 
@@ -533,5 +538,12 @@ a:focus {
 }
 
 .ant-drawer-content-wrapper {
-    transition: transform .5s ease-in-out 0s, box-shadow .3s cubic-bezier(.23,1,.32,1) !important;
+    transition: transform .5s ease-in-out 0s, box-shadow .3s cubic-bezier(.23, 1, .32, 1) !important;
+}
+
+.scrollable-div {
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
 }

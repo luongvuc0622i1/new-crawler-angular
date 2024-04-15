@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, HostListener } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ApiService } from '../../service/api.service';
 import { TokenService } from '../../service/token.service';
@@ -37,7 +37,8 @@ export class AutoDetailComponent {
   constructor(private apiService: ApiService,
     private router: Router,
     private route: ActivatedRoute,
-    private tokenService: TokenService) { }
+    private tokenService: TokenService,
+    private elementRef: ElementRef) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
@@ -180,5 +181,29 @@ export class AutoDetailComponent {
     }
     this.currentPage = 1;
     this.onload()
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  onScroll(): void {
+    const scrollableDiv = this.elementRef.nativeElement.querySelector('.scrollable-div');
+    if (scrollableDiv.scrollTop + scrollableDiv.clientHeight >= scrollableDiv.scrollHeight) {
+      console.log('Bạn đã cuộn đến cuối cùng của thẻ div!');
+      // Gọi hàm hoặc thực hiện hành động mong muốn ở đây
+      const currentScrollPosition = scrollableDiv.scrollHeight;
+      this.currentPage = this.currentPage + 1;
+      // this.onload();
+      if (!this.sortBy.length) {
+        this.colDate = true;
+        this.sortBy.push('date');
+      }
+      this.apiService.getAutoItem(this.id, this.currentPage - 1, this.amount, this.key, this.sortBy.join(",")).subscribe(response => {
+        this.fullData = this.fullData.concat(response.content);
+      }, () => { });
+
+      scrollableDiv.scrollTo({
+        top: currentScrollPosition,
+        behavior: 'auto'
+      });
+    }
   }
 }

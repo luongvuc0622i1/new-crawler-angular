@@ -149,7 +149,7 @@
 </div>
 <div class="class-mobile">
   <div class="class-scroll">
-    <div style="height: 100%; overflow-x: hidden;" *ngIf="!loading">
+    <div #scrollableDiv class="scrollable-div" (scroll)="onScroll()" *ngIf="!loading">
       <div nz-row [nzGutter]="[{ xs: 8, sm: 16, md: 24, lg: 32 }, { xs: 8, sm: 16, md: 24, lg: 32 }]">
         <div nz-col class="gutter-row" [nzXs]="24" [nzSm]="12" *ngFor="let item of fullData">
           <nz-card style="width: 100%; border-radius: 8px;" [nzTitle]="titleTemplate">

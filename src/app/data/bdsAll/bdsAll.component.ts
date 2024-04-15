@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../../service/api.service';
 
@@ -28,7 +28,8 @@ export class BdsAllComponent {
   category: string = '';
 
   constructor(private router: Router,
-    private apiService: ApiService) { }
+    private apiService: ApiService,
+    private elementRef: ElementRef) { }
 
   ngOnInit(): void {
     this.onload();
@@ -58,7 +59,7 @@ export class BdsAllComponent {
   close(): void {
     this.visible = false;
   }
-  
+
   onClick(navi: string) {
     this.router.navigate(['/' + navi]);
   }
@@ -148,5 +149,29 @@ export class BdsAllComponent {
     }
     this.currentPage = 1;
     this.onload()
+  }
+
+  @HostListener('window:scroll', ['$event'])
+  onScroll(): void {
+    const scrollableDiv = this.elementRef.nativeElement.querySelector('.scrollable-div');
+    if (scrollableDiv.scrollTop + scrollableDiv.clientHeight >= scrollableDiv.scrollHeight) {
+      console.log('Bạn đã cuộn đến cuối cùng của thẻ div!');
+      // Gọi hàm hoặc thực hiện hành động mong muốn ở đây
+      const currentScrollPosition = scrollableDiv.scrollHeight;
+      this.currentPage = this.currentPage + 1;
+      // this.onload();
+      if (!this.sortBy.length) {
+        this.colDate = true;
+        this.sortBy.push('date');
+      }
+      this.apiService.getBdsAllItems(this.currentPage - 1, this.amount, this.key, this.sortBy.join(",")).subscribe(response => {
+        this.fullData = this.fullData.concat(response.content);
+      }, () => { });
+
+      scrollableDiv.scrollTo({
+        top: currentScrollPosition,
+        behavior: 'auto'
+      });
+    }
   }
 }
