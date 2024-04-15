@@ -301,6 +301,7 @@ button {
 /* pagination */
 .pag,
 .select {
+    color: var(--layout-color);
     min-width: 31px;
     height: 31px;
     border: none;
