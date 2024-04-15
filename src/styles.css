@@ -455,6 +455,8 @@ a:focus {
 
 .getTableStyle {
     padding: 20px 100px;
+    height: calc(100dvh - 80px);
+    overflow-y: auto;
 }
 
 .column {
