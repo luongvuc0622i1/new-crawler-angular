@@ -187,7 +187,7 @@ export class AutoDetailComponent {
   onScroll(): void {
     const scrollableDiv = this.elementRef.nativeElement.querySelector('.scrollable-div');
     if (scrollableDiv.scrollTop + scrollableDiv.clientHeight >= scrollableDiv.scrollHeight) {
-      console.log('Bạn đã cuộn đến cuối cùng của thẻ div!');
+      // console.log('Bạn đã cuộn đến cuối cùng của thẻ div!');
       // Gọi hàm hoặc thực hiện hành động mong muốn ở đây
       const currentScrollPosition = scrollableDiv.scrollHeight;
       this.currentPage = this.currentPage + 1;

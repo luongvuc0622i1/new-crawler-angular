@@ -12,9 +12,9 @@
       <div class="username">{{this.username}} <i class="fa-solid fa-chevron-down"></i></div>
       <div id="nav-dropdown" class="dropdown-content">
         <div (click)="onClick('home')"><a><i class="fa-solid fa-house"></i> Trang chủ</a></div>
-        <div (click)="onClick('config')" *ngIf="role.toLowerCase() === 'admin'" class="class-desktop"><a><i class="fa-solid fa-gear"></i> Quản
+        <div (click)="onClick('config')" *ngIf="role.toLowerCase() === 'admin'"><a><i class="fa-solid fa-gear"></i> Quản
             lý nội dung</a></div>
-        <div (click)="onClick('accounts')" *ngIf="role.toLowerCase() === 'admin'" class="class-desktop"><a><i class="fa-solid fa-user"></i>
+        <div (click)="onClick('accounts')" *ngIf="role.toLowerCase() === 'admin'"><a><i class="fa-solid fa-user"></i>
             Quản lý tài khoản</a></div>
         <div class="divider"></div>
         <div (click)="logout()"><a><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</a></div>
