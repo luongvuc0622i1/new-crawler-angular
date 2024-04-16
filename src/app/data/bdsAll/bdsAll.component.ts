@@ -25,7 +25,7 @@ export class BdsAllComponent {
   colSquare: boolean = false;
   colPrice: boolean = false;
 
-  placement: NzDrawerPlacement = 'bottom';
+  placement: NzDrawerPlacement = 'top';
   visible = false;
   category: string = '';
 
