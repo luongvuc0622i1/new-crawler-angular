@@ -197,13 +197,12 @@
     </div>
   </div>
   <div class="relative">
-    <div class="open-drawer">
-      <div class="button-up" (click)="open()" (touchstart)="open()"><span nz-icon style="font-size: 18px; color: white;" nzType="caret-up" nzTheme="outline"></span></div>
-      <!-- <button nz-button nzType="primary" (click)="open()">Open</button> -->
-      <!-- <div style="background-color: var(--layout-color); width: 100%; height: 10px;"></div> -->
-    </div>
+    <!-- <div class="open-drawer"> -->
+    <div class="button-up" (click)="open()" (touchstart)="open()"><span nz-icon style="font-size: 18px; color: white;"
+        nzType="left" nzTheme="outline"></span></div>
+    <!-- </div> -->
   </div>
-  <nz-drawer nzHeight="fit-content" [nzClosable]="false" [nzVisible]="visible" nzPlacement="bottom"
+  <nz-drawer nzHeight="fit-content" [nzClosable]="false" [nzVisible]="visible" nzPlacement="right" nzWidth="75%"
     (nzOnClose)="close()">
     <ng-container *nzDrawerContent>
       <nz-radio-group [(ngModel)]="category">

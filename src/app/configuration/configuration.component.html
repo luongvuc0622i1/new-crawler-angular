@@ -110,13 +110,12 @@
     </div>
   </div>
   <div class="relative">
-    <div class="open-drawer">
-      <div class="button-up" (click)="createMobile()" (touchstart)="createMobile()">
-        <span nz-icon style="font-size: 18px; color: white;" nzType="caret-up" nzTheme="outline"></span>
-      </div>
-    </div>
+    <!-- <div class="open-drawer"> -->
+    <div class="button-up" (click)="createMobile()" (touchstart)="createMobile()"><span nz-icon style="font-size: 18px; color: white;"
+        nzType="left" nzTheme="outline"></span></div>
+    <!-- </div> -->
   </div>
-  <nz-drawer nzHeight="fit-content" [nzClosable]="false" [nzVisible]="visible" nzPlacement="bottom"
+  <nz-drawer nzHeight="fit-content" [nzClosable]="false" [nzVisible]="visible" nzPlacement="right" nzWidth="75%"
     (nzOnClose)="close()">
     <ng-container *nzDrawerContent>
       <app-modal-config (closeModal)="close()"></app-modal-config>
