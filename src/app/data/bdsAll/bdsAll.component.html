@@ -124,7 +124,6 @@
   </div>
 </div>
 <div class="class-mobile">
-  <button (click)="open()">123</button>
   <div class="class-scroll">
     <div #scrollableDiv class="scrollable-div" (scroll)="onScroll()" *ngIf="!loading">
       <div nz-row [nzGutter]="[{ xs: 8, sm: 16, md: 24, lg: 32 }, { xs: 8, sm: 16, md: 24, lg: 32 }]">
@@ -173,7 +172,7 @@
       <!-- <div style="background-color: var(--layout-color); width: 100%; height: 10px;"></div> -->
     </div>
   </div>
-  <nz-drawer nzHeight="fit-content" [nzClosable]="false" [nzVisible]="visible" nzPlacement="left"
+  <nz-drawer nzHeight="fit-content" [nzClosable]="false" [nzVisible]="visible" [nzPlacement]="placement"
     (nzOnClose)="close()">
     <ng-container *nzDrawerContent>
       <nz-radio-group [(ngModel)]="category">

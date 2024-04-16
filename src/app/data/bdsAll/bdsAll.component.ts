@@ -1,6 +1,7 @@
 import { Component, ElementRef, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../../service/api.service';
+import { NzDrawerPlacement } from 'ng-zorro-antd/drawer';
 
 @Component({
   selector: 'app-bdsAll',
@@ -24,6 +25,7 @@ export class BdsAllComponent {
   colSquare: boolean = false;
   colPrice: boolean = false;
 
+  placement: NzDrawerPlacement = 'bottom';
   visible = false;
   category: string = '';
 
