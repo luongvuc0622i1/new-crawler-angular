@@ -42,7 +42,7 @@ export class NavigationComponent {
   logout() {
     this.authService.logout().subscribe(data => {
       localStorage.clear();
-      this.router.navigate(['/']);
+      this.router.navigate(['/login']);
     }, () => { });
   }
 

@@ -20,8 +20,8 @@ const routes: Routes = [
     component: AccountsComponent
   },
   {
-    path: 'home', canActivate: [AuthGuard],
-    component: BdsAllComponent
+    path: 'home',
+    redirectTo: '/bds'
   },
   {
     path: 'bds', canActivate: [AuthGuard],
@@ -44,8 +44,12 @@ const routes: Routes = [
     component: NotFoundComponent
   },
   {
-    path: '**',
+    path: 'login',
     component: LandingComponent
+  },
+  {
+    path: '**',
+    redirectTo: '/bds'
   }
 ];
 

@@ -91,7 +91,6 @@ export class ConfigurationComponent {
     this.transferService.setId(parseInt(id));
     this.transferService.setShowModalConfig(true);
     this.transferService.setShowModal(true);
-    this.open();
   }
 
   configMobile(id: string): void {
