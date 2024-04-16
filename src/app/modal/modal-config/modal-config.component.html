@@ -1,5 +1,5 @@
 <form class="form-group" [formGroup]="formConfiguration">
-  <div style="display: flex; flex-direction: column; gap: 5px;">
+  <div class="ta-center" style="display: flex; flex-direction: column; gap: 5px;">
     <div>
       <svg width="126" height="129" viewBox="0 0 126 129" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
@@ -142,7 +142,7 @@
   <div>
     <input style="display: none;" type="file" id="fileInput" (change)="onFileSelected($event)" />
 
-    <div class="clearfix" style="display: flex; gap: 10px; height: 43px;">
+    <div class="clearfix ta-center group-button">
       <div class="button button-hover button-1 color-gray-1 edit-button w-100" style="padding: 8px 24px;"
         (click)="save()">Save</div>
       <div class="button button-hover button-1 color-gray-1 delete-button w-100" style="padding: 8px 24px;"

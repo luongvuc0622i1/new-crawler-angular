@@ -549,3 +549,12 @@ a:focus {
     overflow-y: auto;
     overflow-x: hidden;
 }
+
+.group-button {
+    display: flex;
+    height: 43px;
+}
+
+.group-button > * + * {
+    margin-left: 10px;
+}

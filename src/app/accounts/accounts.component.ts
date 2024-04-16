@@ -18,6 +18,7 @@ export class AccountsComponent {
   currentPage: number = 1;
 
   visible = false;
+  action: string = '';
 
   private subscription?: Subscription;
 
@@ -65,10 +66,22 @@ export class AccountsComponent {
     this.transferService.setShowModalSignup(true);
   }
 
+  editMobile(id: string): void {
+    this.transferService.setIdSignup(parseInt(id));
+    this.action = 'form';
+    this.open();
+  }
+
   create() {
     this.transferService.setIdSignup(0);
     this.transferService.setShowModal(true);
     this.transferService.setShowModalSignup(true);
+  }
+
+  createMobile(): void {
+    this.transferService.setIdSignup(0);
+    this.action = 'form';
+    this.open();
   }
 
   delete(id: number) {
@@ -76,6 +89,13 @@ export class AccountsComponent {
     this.transferService.setShowModal(true);
     this.transferService.setShowModalDelete(true);
     this.transferService.setDeleteFor('account');
+  }
+
+  deleteMobile(id: number) {
+    this.transferService.setIdSignup(id);
+    this.transferService.setDeleteFor('account');
+    this.action = 'delete';
+    this.open();
   }
 
   @HostListener('window:scroll', ['$event'])

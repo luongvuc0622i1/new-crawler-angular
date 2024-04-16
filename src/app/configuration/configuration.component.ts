@@ -91,12 +91,23 @@ export class ConfigurationComponent {
     this.transferService.setId(parseInt(id));
     this.transferService.setShowModalConfig(true);
     this.transferService.setShowModal(true);
+    this.open();
+  }
+
+  configMobile(id: string): void {
+    this.transferService.setId(parseInt(id));
+    this.open();
   }
 
   create(): void {
     this.transferService.setId(0);
     this.transferService.setShowModalConfig(true);
     this.transferService.setShowModal(true);
+  }
+
+  createMobile(): void {
+    this.transferService.setId(0);
+    this.open();
   }
 
   @HostListener('window:scroll', ['$event'])
