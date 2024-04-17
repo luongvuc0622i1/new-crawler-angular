@@ -5,10 +5,10 @@ import { TransferService } from '../service/transfer.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-accounts',
-  templateUrl: './accounts.component.html'
+  selector: 'app-categories',
+  templateUrl: './categories.component.html'
 })
-export class AccountsComponent {
+export class CategoriesComponent {
   loading: boolean = false;
   fullData: any;
   amount: number = 10;
@@ -34,7 +34,7 @@ export class AccountsComponent {
   }
 
   onload(): void {
-    this.apiService.getAccounts(this.currentPage - 1, this.amount).subscribe(response => {
+    this.apiService.getCategories(this.currentPage - 1, this.amount).subscribe(response => {
       this.totalPages = response.totalPages;
       this.fullData = response.content;
     }, () => {
@@ -49,9 +49,13 @@ export class AccountsComponent {
   close(): void {
     this.visible = false;
   }
-  
+
   onClick(navi: string) {
     this.router.navigate(['/' + navi]);
+  }
+
+  onClick2(path: string) {
+    this.router.navigate([path]);
   }
 
   refresh(curPage: number): void {
@@ -59,40 +63,40 @@ export class AccountsComponent {
     this.onload();
   }
 
-  edit(id: string): void {
-    this.transferService.setIdSignup(parseInt(id));
+  edit(id: number): void {
+    this.transferService.setIdCategory(id);
     this.transferService.setShowModal(true);
-    this.transferService.setShowModalSignup(true);
+    this.transferService.setShowModalCategory(true);
   }
 
-  editMobile(id: string): void {
-    this.transferService.setIdSignup(parseInt(id));
+  editMobile(id: number): void {
+    this.transferService.setIdCategory(id);
     this.action = 'form';
     this.open();
   }
 
   create() {
-    this.transferService.setIdSignup(0);
+    this.transferService.setIdCategory(0);
     this.transferService.setShowModal(true);
-    this.transferService.setShowModalSignup(true);
+    this.transferService.setShowModalCategory(true);
   }
 
   createMobile(): void {
-    this.transferService.setIdSignup(0);
+    this.transferService.setIdCategory(0);
     this.action = 'form';
     this.open();
   }
 
   delete(id: number) {
-    this.transferService.setIdSignup(id);
+    this.transferService.setIdCategory(id);
     this.transferService.setShowModal(true);
     this.transferService.setShowModalDelete(true);
-    this.transferService.setDeleteFor('account');
+    this.transferService.setDeleteFor('category');
   }
 
   deleteMobile(id: number) {
-    this.transferService.setIdSignup(id);
-    this.transferService.setDeleteFor('account');
+    this.transferService.setIdCategory(id);
+    this.transferService.setDeleteFor('category');
     this.action = 'delete';
     this.open();
   }
@@ -106,7 +110,7 @@ export class AccountsComponent {
       const currentScrollPosition = scrollableDiv.scrollHeight;
       this.currentPage = this.currentPage + 1;
       // this.onload();
-      this.apiService.getPages(this.currentPage - 1, this.amount).subscribe(response => {
+      this.apiService.getCategories(this.currentPage - 1, this.amount).subscribe(response => {
         this.fullData = this.fullData.concat(response.content);
       }, () => { });
 

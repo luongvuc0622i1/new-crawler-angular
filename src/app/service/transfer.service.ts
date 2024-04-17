@@ -9,10 +9,12 @@ export class TransferService {
   private _sharedData = new BehaviorSubject<any>(
     {
       'id': 0,
+      'idSignup': 0,
+      'idCategory': 0,
       'showModal': false,
       'showModalConfig': false,
       'showModalDelete': false,
-      'idSignup': 0,
+      'showModalCategory': false,
       'showModalSignup': false,
       'showModalNewPassword': false,
       'deleteFor': ''
@@ -39,12 +41,19 @@ export class TransferService {
     this._sharedData.next(val);
   }
 
+  setIdCategory(i: number) {
+    let val = this._sharedData.value;
+    val.idCategory = i;
+    this._sharedData.next(val);
+  }
+
   setShowModal(boo: boolean) {
     if (!boo) {
       this.setShowModalConfig(boo);
       this.setShowModalDelete(boo);
       this.setShowModalNewPassword(boo);
       this.setShowModalSignup(boo);
+      this.setShowModalCategory(boo);
     }
     let val = this._sharedData.value;
     val.showModal = boo;
@@ -60,6 +69,12 @@ export class TransferService {
   setShowModalDelete(boo: boolean) {
     let val = this._sharedData.value;
     val.showModalDelete = boo;
+    this._sharedData.next(val);
+  }
+
+  setShowModalCategory(boo: boolean) {
+    let val = this._sharedData.value;
+    val.showModalCategory = boo;
     this._sharedData.next(val);
   }
 

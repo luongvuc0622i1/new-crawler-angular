@@ -10,6 +10,7 @@ import { TransferService } from '../../service/transfer.service';
 export class ModalDeleteComponent {
   id: number = 0;
   idAccount: number = 0;
+  idCategory: number = 0;
   deleteFor: string = '';
   @Output() closeModal = new EventEmitter<void>();
 
@@ -21,6 +22,7 @@ export class ModalDeleteComponent {
       this.deleteFor = data.deleteFor;
       this.id = data.id;
       this.idAccount = data.idSignup;
+      this.idCategory = data.idCategory;
     });
   }
 
@@ -36,6 +38,11 @@ export class ModalDeleteComponent {
       });
     } else if (this.idAccount && this.deleteFor === 'account') {
       this.apiService.deleteAccount(this.idAccount).subscribe(response => {
+        // this.onload2();
+        window.location.reload();
+      });
+    } else if (this.idCategory && this.deleteFor === 'category') {
+      this.apiService.deleteCategory(this.idCategory).subscribe(response => {
         // this.onload2();
         window.location.reload();
       });

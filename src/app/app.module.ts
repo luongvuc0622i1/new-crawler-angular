@@ -30,6 +30,8 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
 import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
+import { CategoriesComponent } from './categories/categories.component';
+import { ModalCategoryComponent } from './modal/modal-category/modal-category.component';
 
 @NgModule({
   declarations: [
@@ -43,11 +45,13 @@ import { NzDrawerModule } from 'ng-zorro-antd/drawer';
     ModalDeleteComponent,
     ModalSignupComponent,
     ModalNewPasswordComponent,
+    ModalCategoryComponent,
     PaginationComponent,
     NavigationComponent,
     LandingComponent,
     AccountsComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    CategoriesComponent
   ],
   imports: [
     BrowserModule,

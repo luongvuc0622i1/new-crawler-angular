@@ -6,8 +6,7 @@ import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-configuration',
-  templateUrl: './configuration.component.html',
-  styleUrl: './configuration.component.css'
+  templateUrl: './configuration.component.html'
 })
 export class ConfigurationComponent {
   loading: boolean = false;

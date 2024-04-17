@@ -30,7 +30,7 @@ export class ModalConfigComponent {
   ngOnInit(): void {
     this.apiService.getAllCategories().subscribe(response => {
       this.categoriesList = response;
-    })
+    });
     this.transferService.sharedData$.subscribe((data) => {
       this.id = data.id;
     });

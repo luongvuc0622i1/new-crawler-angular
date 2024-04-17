@@ -9,6 +9,7 @@ import { BdsDetailComponent } from './data/bdsDetail/bdsDetail.component';
 import { ConfigurationComponent } from './configuration/configuration.component';
 import { AutoAllComponent } from './data/autoAll/autoAll.component';
 import { AutoDetailComponent } from './data/autoDetail/autoDetail.component';
+import { CategoriesComponent } from './categories/categories.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,10 @@ const routes: Routes = [
   {
     path: 'accounts', canActivate: [AuthGuard],
     component: AccountsComponent
+  },
+  {
+    path: 'categories', canActivate: [AuthGuard],
+    component: CategoriesComponent
   },
   {
     path: 'home',

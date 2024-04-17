@@ -45,6 +45,10 @@ export class ApiService {
     return this.http.get<any>(`${API_URL}/category/all-category?page=${page}&size=${size}`);
   }
 
+  getCategory(id: number): Observable<any> {
+    return this.http.get<any>(`${API_URL}/category/get/${id}`);
+  }
+
   createCategory(obj: any): Observable<any> {
     return this.http.post<any>(`${API_URL}/category/add-category`, obj);
   }

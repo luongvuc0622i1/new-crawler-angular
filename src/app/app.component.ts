@@ -12,6 +12,7 @@ export class AppComponent {
   showModalDelete: boolean = false;
   showModalSignup: boolean = false;
   showModalNewPassword: boolean = false;
+  showModalCategory: boolean = false;
 
   constructor(private transferService: TransferService) {}
 
@@ -22,6 +23,7 @@ export class AppComponent {
       this.showModalDelete = data.showModalDelete;
       this.showModalSignup = data.showModalSignup;
       this.showModalNewPassword = data.showModalNewPassword;
+      this.showModalCategory = data.showModalCategory;
     });
   }
 
@@ -30,6 +32,7 @@ export class AppComponent {
     this.transferService.setShowModalConfig(false);
     this.transferService.setShowModalDelete(false);
     this.transferService.setShowModalSignup(false);
+    this.transferService.setShowModalCategory(false);
     this.showModalNewPassword = false;
   }
 
@@ -39,6 +42,7 @@ export class AppComponent {
       this.transferService.setShowModalConfig(false);
       this.transferService.setShowModalDelete(false);
       this.transferService.setShowModalSignup(false);
+      this.transferService.setShowModalCategory(false);
       this.showModalNewPassword = false;
     }
   }
