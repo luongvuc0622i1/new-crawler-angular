@@ -164,12 +164,6 @@ export class ModalConfigComponent {
     } else this.statusSpider = '';
   }
 
-  delete() {
-    this.transferService.setShowModalConfig(false);
-    this.transferService.setShowModalDelete(true);
-    this.transferService.setDeleteFor('config');
-  }
-
   back() {
     this.closeModal.emit();
   }

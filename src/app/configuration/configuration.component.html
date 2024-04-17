@@ -29,7 +29,7 @@
               <div class="body-3 ta-center">{{item.website_url ? ((currentPage - 1) * amount + i + 1) : ''}}</div>
             </td>
             <td>
-              <div class="body-3 ta-center">{{item.website_name}}</div>
+              <div class="body-3 ta-center" (click)="navi(item)">{{item.website_name}}</div>
             </td>
             <td>
               <div class="body-5 ta-center">{{item.website_url}}</div>
@@ -42,12 +42,12 @@
                 (click)="crawler(item)" *ngIf="item.website_url">Crawler</button>
             </td>
             <td class="ta-center long-text-100">
-              <button class="button button-hover button-1 color-gray-1 pri-button" style="padding: 8px 24px;"
-                (click)="navi(item)" *ngIf="item.website_url">Show</button>
-            </td>
-            <td class="ta-center long-text-100">
               <button class="button button-hover button-1 color-gray-1 edit-button" style="padding: 8px 24px;"
                 (click)="config(item.id)" *ngIf="item.website_url">Edit</button>
+            </td>
+            <td class="ta-center long-text-100">
+              <button class="button button-hover button-1 color-gray-1 delete-button" style="padding: 8px 24px;"
+                (click)="delete(item.id)" *ngIf="item.website_url">Delete</button>
             </td>
           </tr>
         </tbody>
@@ -72,8 +72,8 @@
       <div nz-row [nzGutter]="[{ xs: 8, sm: 16, md: 24, lg: 32 }, { xs: 8, sm: 16, md: 24, lg: 32 }]">
         <div nz-col class="gutter-row" [nzXs]="24" [nzSm]="12" *ngFor="let item of fullData">
           <nz-card style="width: 100%; border-radius: 8px;" [nzTitle]="titleTemplate" *ngIf="item.website_url"
-            [nzActions]="[actionCrawler, actionShow, actionEdit]">
-            <nz-descriptions>
+            [nzActions]="[actionCrawler, actionEdit, actionDelete]">
+            <nz-descriptions (click)="navi(item)">
               <nz-descriptions-item [nzTitle]="iconUrl">{{item.website_url}}</nz-descriptions-item>
               <nz-descriptions-item [nzTitle]="iconType">{{item.type?.toUpperCase()}}</nz-descriptions-item>
             </nz-descriptions>
@@ -92,11 +92,11 @@
           <ng-template #actionCrawler>
             <div (click)="crawler(item)">Crawler</div>
           </ng-template>
-          <ng-template #actionShow>
-            <span nz-icon nzType="ellipsis" (click)="navi(item)"></span>
-          </ng-template>
           <ng-template #actionEdit>
             <span nz-icon nzType="edit" (click)="configMobile(item.id)"></span>
+          </ng-template>
+          <ng-template #actionDelete>
+            <span nz-icon nzType="delete" nzTheme="outline" (click)="deleteMobile(item.id)"></span>
           </ng-template>
         </div>
       </div>
@@ -118,7 +118,8 @@
   <nz-drawer nzHeight="fit-content" [nzClosable]="false" [nzVisible]="visible" nzPlacement="right" nzWidth="75%"
     (nzOnClose)="close()">
     <ng-container *nzDrawerContent>
-      <app-modal-config (closeModal)="close()"></app-modal-config>
+      <app-modal-config *ngIf="action === 'form'" (closeModal)="close()"></app-modal-config>
+      <app-modal-delete *ngIf="action === 'delete'" (closeModal)="close()"></app-modal-delete>
     </ng-container>
   </nz-drawer>
 </div>

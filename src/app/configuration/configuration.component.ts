@@ -19,6 +19,7 @@ export class ConfigurationComponent {
   currentPage: number = 1;
 
   visible = false;
+  action: string = '';
 
   private subscription?: Subscription;
 
@@ -50,7 +51,7 @@ export class ConfigurationComponent {
   close(): void {
     this.visible = false;
   }
-  
+
   onClick(navi: string) {
     this.router.navigate(['/' + navi]);
   }
@@ -95,6 +96,7 @@ export class ConfigurationComponent {
 
   configMobile(id: string): void {
     this.transferService.setId(parseInt(id));
+    this.action = 'form';
     this.open();
   }
 
@@ -106,6 +108,21 @@ export class ConfigurationComponent {
 
   createMobile(): void {
     this.transferService.setId(0);
+    this.action = 'form';
+    this.open();
+  }
+
+  delete(id: number): void {
+    this.transferService.setId(id);
+    this.transferService.setShowModal(true);
+    this.transferService.setShowModalDelete(true);
+    this.transferService.setDeleteFor('config');
+  }
+
+  deleteMobile(id: number): void {
+    this.transferService.setId(id);
+    this.action = 'delete';
+    this.transferService.setDeleteFor('config');
     this.open();
   }
 

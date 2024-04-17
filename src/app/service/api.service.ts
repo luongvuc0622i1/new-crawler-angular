@@ -36,6 +36,23 @@ export class ApiService {
     return this.http.get<any>(`${API_URL}/crawlCarData/${id}`);
   }
 
+  // category
+  getCategories(page: number, size: number): Observable<any> {
+    return this.http.get<any>(`${API_URL}/category/all-category?page=${page}&size=${size}`);
+  }
+
+  createCategory(obj: any): Observable<any> {
+    return this.http.post<any>(`${API_URL}/category/add-category`, obj);
+  }
+
+  updateCategory(obj: any, id: number): Observable<any> {
+    return this.http.put<any>(`${API_URL}/category/update-category/${id}`, obj);
+  }
+
+  deleteCategory(id: number): Observable<any> {
+    return this.http.delete<any>(`${API_URL}/category/delete-category/${id}`);
+  }
+
   // configuration
   getPages(page: number, size: number): Observable<any> {
     return this.http.get<any>(`${API_URL}/getAll?page=${page}&size=${size}`);
