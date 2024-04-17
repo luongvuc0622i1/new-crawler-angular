@@ -22,11 +22,15 @@ export class ModalConfigComponent {
     spider: new FormControl(),
     category: new FormControl(),
   });
+  categoriesList: any = [];
   arr: string[] = ['name', 'url', 'spider', 'category'];
   constructor(private apiService: ApiService,
     private transferService: TransferService) { }
 
   ngOnInit(): void {
+    this.apiService.getAllCategories().subscribe(response => {
+      this.categoriesList = response;
+    })
     this.transferService.sharedData$.subscribe((data) => {
       this.id = data.id;
     });

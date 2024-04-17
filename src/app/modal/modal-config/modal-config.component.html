@@ -121,8 +121,8 @@
     <div class="relative">
       <label class="input-label-default color-gray-1" for="category">Loại</label>
       <select class="input-field body-4 w-100" style="cursor: pointer;" id="category" formControlName="category" (mouseleave)="formatCategory()">
-        <option>bds</option>
-        <option>auto</option>
+        <option hidden></option>
+        <option *ngFor="let category of categoriesList;" [value]="category.categoryName">{{category.categoryName}}</option>
       </select>
     </div>
     <div class="error">{{statusCategory}}</div>

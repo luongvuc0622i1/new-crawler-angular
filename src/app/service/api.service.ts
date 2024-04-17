@@ -37,6 +37,10 @@ export class ApiService {
   }
 
   // category
+  getAllCategories(): Observable<any> {
+    return this.http.get<any>(`${API_URL}/category/all-category`);
+  }
+
   getCategories(page: number, size: number): Observable<any> {
     return this.http.get<any>(`${API_URL}/category/all-category?page=${page}&size=${size}`);
   }
