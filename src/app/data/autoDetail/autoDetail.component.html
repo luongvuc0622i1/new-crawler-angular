@@ -27,35 +27,35 @@
             </th>
             <th class="long-text-200">
               <div class="column body-3">
-                <div></div>
+                <!-- <div></div> -->
                 <div>Tên xe</div>
-                <div class="pointer"
+                <!-- <div class="pointer"
                   [ngStyle]="{'color': colTitle ? 'var(--secondary-active-color)' : 'var(--primary-color)'}"
                   (click)="sortTitle()">
                   <i class="fa-solid fa-sort"></i>
-                </div>
+                </div> -->
               </div>
             </th>
             <th class="long-text-300">
               <div class="column body-3">
-                <div></div>
+                <!-- <div></div> -->
                 <div>Nội dung</div>
-                <div class="pointer"
+                <!-- <div class="pointer"
                   [ngStyle]="{'color': colDetail ? 'var(--secondary-active-color)' : 'var(--primary-color)'}"
                   (click)="sortDetail()">
                   <i class="fa-solid fa-sort"></i>
-                </div>
+                </div> -->
               </div>
             </th>
             <th class="long-text-100">
               <div class="column body-3">
-                <div></div>
+                <!-- <div></div> -->
                 <div>Hộp số</div>
-                <div class="pointer"
+                <!-- <div class="pointer"
                   [ngStyle]="{'color': colGear ? 'var(--secondary-active-color)' : 'var(--primary-color)'}"
                   (click)="sortGear()">
                   <i class="fa-solid fa-sort"></i>
-                </div>
+                </div> -->
               </div>
             </th>
             <!-- <th class="long-text-100">
@@ -69,13 +69,13 @@
           </th> -->
             <th class="long-text-100">
               <div class="column body-3">
-                <div></div>
+                <!-- <div></div> -->
                 <div>Kiểu dáng</div>
-                <div class="pointer"
+                <!-- <div class="pointer"
                   [ngStyle]="{'color': colType ? 'var(--secondary-active-color)' : 'var(--primary-color)'}"
                   (click)="sortType()">
                   <i class="fa-solid fa-sort"></i>
-                </div>
+                </div> -->
               </div>
             </th>
             <th class="long-text-100">
@@ -202,7 +202,7 @@
         nzType="left" nzTheme="outline"></span></div>
     <!-- </div> -->
   </div>
-  <nz-drawer nzHeight="fit-content" [nzClosable]="false" [nzVisible]="visible" nzPlacement="right" nzWidth="75%"
+  <nz-drawer nzHeight="fit-content" [nzClosable]="false" [nzVisible]="visible" nzPlacement="right"
     (nzOnClose)="close()">
     <ng-container *nzDrawerContent>
       <nz-radio-group [(ngModel)]="category">
@@ -222,21 +222,21 @@
         <div nz-col class="gutter-row" [nzSpan]="12">
           <label nz-checkbox [ngModel]="colDate" (ngModelChange)="sortDate()">Ngày đăng</label>
         </div>
-        <div nz-col class="gutter-row" [nzSpan]="12">
+        <!-- <div nz-col class="gutter-row" [nzSpan]="12">
           <label nz-checkbox [ngModel]="colTitle" (ngModelChange)="sortTitle()">Tiêu đề</label>
-        </div>
-        <div nz-col class="gutter-row" [nzSpan]="12">
+        </div> -->
+        <!-- <div nz-col class="gutter-row" [nzSpan]="12">
           <label nz-checkbox [ngModel]="colDetail" (ngModelChange)="sortDetail()">Nội dung</label>
-        </div>
-        <div nz-col class="gutter-row" [nzSpan]="12">
+        </div> -->
+        <!-- <div nz-col class="gutter-row" [nzSpan]="12">
           <label nz-checkbox [ngModel]="colGear" (ngModelChange)="sortGear()">Hộp số</label>
-        </div>
+        </div> -->
         <!-- <div nz-col class="gutter-row" [nzSpan]="12">
           <label nz-checkbox [ngModel]="colEngine" (ngModelChange)="sortEngine()">Động cơ</label>
         </div> -->
-        <div nz-col class="gutter-row" [nzSpan]="12">
+        <!-- <div nz-col class="gutter-row" [nzSpan]="12">
           <label nz-checkbox [ngModel]="colType" (ngModelChange)="sortType()">Kiểu dáng</label>
-        </div>
+        </div> -->
         <div nz-col class="gutter-row" [nzSpan]="12">
           <label nz-checkbox [ngModel]="colPrice" (ngModelChange)="sortPrice()">Giá</label>
         </div>

@@ -472,6 +472,7 @@ a:focus {
 
 .class-scroll {
     height: 100%;
+    width: 100%;
     padding: 16px 16px;
 }
 
@@ -540,7 +541,7 @@ a:focus {
     
     display: flex;
     align-items: center;
-    top: 75%;
+    top: 50%;
     transform: translateY(-50%);
     left: -20px;
 
