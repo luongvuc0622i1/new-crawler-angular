@@ -11,7 +11,6 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { Auth_interceptor } from './service/auth_interceptor';
 import { ModalSignupComponent } from './modal/modal-signup/modal-signup.component';
 import { LandingComponent } from './landing/landing.component';
-import { ModalNewPasswordComponent } from './modal/modal-new-password/modal-new-password.component';
 import { AccountsComponent } from './accounts/accounts.component';
 import { BdsAllComponent } from './data/bdsAll/bdsAll.component';
 import { BdsDetailComponent } from './data/bdsDetail/bdsDetail.component';
@@ -31,6 +30,8 @@ import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { CategoriesComponent } from './categories/categories.component';
 import { ModalCategoryComponent } from './modal/modal-category/modal-category.component';
+import { FormNewPasswordComponent } from './modal/form-new-password/form-new-password.component';
+import { FormSignInComponent } from './modal/form-sign-in/form-sign-in.component';
 
 @NgModule({
   declarations: [
@@ -43,13 +44,14 @@ import { ModalCategoryComponent } from './modal/modal-category/modal-category.co
     ModalConfigComponent,
     ModalDeleteComponent,
     ModalSignupComponent,
-    ModalNewPasswordComponent,
     ModalCategoryComponent,
     PaginationComponent,
     NavigationComponent,
     LandingComponent,
     AccountsComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    FormNewPasswordComponent,
+    FormSignInComponent
   ],
   imports: [
     BrowserModule,

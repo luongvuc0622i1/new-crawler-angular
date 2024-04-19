@@ -565,3 +565,41 @@ button {
 .group-button > * + * {
     margin-left: 10px;
 }
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+}
+
+.button-pay {
+    display: flex;
+    padding: 16px 32px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    align-self: stretch;
+    border-radius: 8px;
+    background: var(--neutral-grey-3, #DEDEDE);
+}
+
+.button-pay-hover:hover {
+    background: var(--Secondary, #F58926);
+    color: var(--neutral-white, #FEFEFE);
+    cursor: pointer;
+}
+
+.verify {
+    position: absolute;
+    top: 50%;
+    right: 16px;
+    transform: translateY(-50%);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.verifi {
+    color: blue;
+    cursor: pointer;
+}

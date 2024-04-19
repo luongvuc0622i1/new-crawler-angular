@@ -4,10 +4,10 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { AuthService } from '../../service/auth.service';
 
 @Component({
-  selector: 'app-modal-new-password',
-  templateUrl: './modal-new-password.component.html'
+  selector: 'app-form-new-password',
+  templateUrl: './form-new-password.component.html'
 })
-export class ModalNewPasswordComponent {
+export class FormNewPasswordComponent {
   @Output() closeModal = new EventEmitter<void>();
   email: string = '';
   password: string = '';
