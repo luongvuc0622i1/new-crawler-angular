@@ -42,11 +42,11 @@ export class ApiService {
   }
 
   getCategories(page: number, size: number): Observable<any> {
-    return this.http.get<any>(`${API_URL}/category/all-category?page=${page}&size=${size}`);
+    return this.http.get<any>(`${API_URL}/category/all-category-page?page=${page}&size=${size}`);
   }
 
   getCategory(id: number): Observable<any> {
-    return this.http.get<any>(`${API_URL}/category/get/${id}`);
+    return this.http.get<any>(`${API_URL}/category/get-category/${id}`);
   }
 
   createCategory(obj: any): Observable<any> {

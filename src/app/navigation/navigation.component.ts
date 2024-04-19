@@ -53,7 +53,7 @@ export class NavigationComponent {
   }
 
   onClick(navi: string) {
-    this.router.navigate(['/' + navi]);
+    this.router.navigate([navi]);
   }
 
   toggleSetting() {

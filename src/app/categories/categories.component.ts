@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener } from '@angular/core';
+import { Component, ElementRef, HostListener, SimpleChanges } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ApiService } from '../service/api.service';
 import { TransferService } from '../service/transfer.service';
@@ -31,6 +31,20 @@ export class CategoriesComponent {
     this.subscription = this.transferService.callReload$.subscribe(() => {
       this.onload();
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    // // Kiểm tra xem thuộc tính myInput có thay đổi không
+    // if (changes.myInput) {
+    //   const currentValue = changes.myInput.currentValue;
+    //   const previousValue = changes.myInput.previousValue;
+    //   console.log('Giá trị mới của myInput:', currentValue);
+    //   console.log('Giá trị cũ của myInput:', previousValue);
+      
+    //   // Thực hiện các hành động phù hợp với việc thay đổi giá trị
+    // }
+    console.log(1);
+    this.onload();
   }
 
   onload(): void {
