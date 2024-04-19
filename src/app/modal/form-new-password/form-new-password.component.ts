@@ -69,8 +69,8 @@ export class FormNewPasswordComponent {
     };
     this.authService.changePassword(obj).subscribe(data => {
       let objSignin = {
-        'email': data.mail,
-        'password': data.newPass,
+        'email': data.email,
+        'password': data.new_pass,
       };
       this.authService.loginEmail(objSignin).subscribe(data => {
         this.authService.signInSuccess(data);
