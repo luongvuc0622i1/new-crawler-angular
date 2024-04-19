@@ -5,8 +5,7 @@ import { TransferService } from '../../service/transfer.service';
 
 @Component({
   selector: 'app-modal-config',
-  templateUrl: './modal-config.component.html',
-  styleUrls: ['./modal-config.component.css']
+  templateUrl: './modal-config.component.html'
 })
 export class ModalConfigComponent {
   @Output() closeModal = new EventEmitter<void>();

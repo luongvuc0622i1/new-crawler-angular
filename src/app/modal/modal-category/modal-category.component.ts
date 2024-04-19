@@ -76,6 +76,7 @@ export class ModalCategoryComponent {
       api = this.apiService.createCategory(this.formCategory.value)
     }
     api.subscribe(data => {
+      this.onload();
       this.closeModal.emit();
     }, error => { })
   }
@@ -97,5 +98,9 @@ export class ModalCategoryComponent {
 
   back() {
     this.closeModal.emit();
+  }
+
+  onload() {
+    this.transferService.callReload();
   }
 }

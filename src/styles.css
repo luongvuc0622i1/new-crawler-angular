@@ -318,9 +318,7 @@ button {
 }
 
 .selected,
-.pag:hover,
-a:active,
-a:focus {
+.pag:hover {
     min-width: 43px;
     height: 43px;
     padding: 12px;

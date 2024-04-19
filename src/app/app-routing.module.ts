@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './service/auth.guard';
 import { LandingComponent } from './landing/landing.component';
-import { NotFoundComponent } from './not-found/not-found.component';
 import { AccountsComponent } from './accounts/accounts.component';
 import { BdsAllComponent } from './data/bdsAll/bdsAll.component';
 import { BdsDetailComponent } from './data/bdsDetail/bdsDetail.component';
@@ -46,7 +45,7 @@ const routes: Routes = [
   },
   {
     path: 'changePassword',
-    component: NotFoundComponent
+    component: LandingComponent
   },
   {
     path: 'login',

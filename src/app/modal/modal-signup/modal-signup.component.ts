@@ -81,6 +81,7 @@ export class ModalSignupComponent {
       api = this.authService.registerEmail(this.formSignup.value)
     }
     api.subscribe(data => {
+      this.onload();
       this.closeModal.emit();
     }, error => { })
   }
@@ -108,5 +109,9 @@ export class ModalSignupComponent {
 
   back() {
     this.closeModal.emit();
+  }
+
+  onload() {
+    this.transferService.callReload();
   }
 }

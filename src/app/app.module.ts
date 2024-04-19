@@ -12,7 +12,6 @@ import { Auth_interceptor } from './service/auth_interceptor';
 import { ModalSignupComponent } from './modal/modal-signup/modal-signup.component';
 import { LandingComponent } from './landing/landing.component';
 import { ModalNewPasswordComponent } from './modal/modal-new-password/modal-new-password.component';
-import { NotFoundComponent } from './not-found/not-found.component';
 import { AccountsComponent } from './accounts/accounts.component';
 import { BdsAllComponent } from './data/bdsAll/bdsAll.component';
 import { BdsDetailComponent } from './data/bdsDetail/bdsDetail.component';
@@ -50,7 +49,6 @@ import { ModalCategoryComponent } from './modal/modal-category/modal-category.co
     NavigationComponent,
     LandingComponent,
     AccountsComponent,
-    NotFoundComponent,
     CategoriesComponent
   ],
   imports: [

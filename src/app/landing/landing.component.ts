@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { AuthService } from '../service/auth.service';
+import { ActivatedRoute } from '@angular/router';
+import { TransferService } from '../service/transfer.service';
 
 @Component({
   selector: 'app-landing',
@@ -9,6 +11,7 @@ import { AuthService } from '../service/auth.service';
 })
 export class LandingComponent {
   @Output() closeModal = new EventEmitter<void>();
+  isLogin: boolean = true;
   statusEmail: string = '';
   statusPassword: string = '';
   formSignin: FormGroup = new FormGroup({
@@ -16,7 +19,19 @@ export class LandingComponent {
     password: new FormControl(),
   });
   arr: string[] = ['email', 'password'];
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,
+    private route: ActivatedRoute,
+    private transferService: TransferService
+  ) { }
+
+  ngOnInit(): void {
+    const path = this.route.snapshot.url[0].path;
+    if (path === 'changePassword') {
+      this.isLogin = false;
+      this.transferService.setShowModal(true);
+      this.transferService.setShowModalNewPassword(true);
+    } else this.isLogin = true;
+  }
 
   ngDoCheck(): void {
     this.arr.forEach(element => {
@@ -73,8 +88,8 @@ export class LandingComponent {
     const passwordRegex = /^(?=.*[A-Z]).{8,}$/;
     if (!this.formSignin.value.password) {
       this.statusPassword = 'Password is require';
-    // } else if (!passwordRegex.test(this.formSignin.value.password)) {
-    //   this.statusPassword = 'Minimum is 8 characters with at least 1 upcase';
+      // } else if (!passwordRegex.test(this.formSignin.value.password)) {
+      //   this.statusPassword = 'Minimum is 8 characters with at least 1 upcase';
     } else this.statusPassword = '';
   }
 
@@ -83,11 +98,11 @@ export class LandingComponent {
     const inputField = target.closest('.relative').querySelector('.input-field');
     const eyeClosed = target.querySelector('.eye-closed');
     const eyeOpen = target.querySelector('.eye-open');
-  
+
     if (inputField && eyeClosed && eyeOpen) {
       // Đảo ngược giá trị của thuộc tính 'type'
       inputField.type = (inputField.type === 'password') ? 'text' : 'password';
-  
+
       // Đảo ngược hiển thị của biểu tượng mắt
       eyeClosed.style.display = (inputField.type === 'password') ? 'initial' : 'none';
       eyeOpen.style.display = (inputField.type === 'password') ? 'none' : 'initial';

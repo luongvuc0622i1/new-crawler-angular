@@ -4,8 +4,7 @@ import { TransferService } from '../../service/transfer.service';
 
 @Component({
   selector: 'app-modal-delete',
-  templateUrl: './modal-delete.component.html',
-  styleUrl: './modal-delete.component.css'
+  templateUrl: './modal-delete.component.html'
 })
 export class ModalDeleteComponent {
   id: number = 0;
@@ -29,27 +28,30 @@ export class ModalDeleteComponent {
   yes() {
     if (this.id && this.deleteFor === 'config') {
       this.apiService.delete(this.id).subscribe(data => {
-        this.onload1();
+        this.onload();
         this.closeModal.emit();
-        console.log('dung')
       }, () => {
         // this.showModalFailed = true;
-        console.log('sai')
       });
     } else if (this.idAccount && this.deleteFor === 'account') {
       this.apiService.deleteAccount(this.idAccount).subscribe(response => {
-        // this.onload2();
-        window.location.reload();
+        this.onload();
+        this.closeModal.emit();
+      }, () => {
+        // this.showModalFailed = true;
       });
     } else if (this.idCategory && this.deleteFor === 'category') {
       this.apiService.deleteCategory(this.idCategory).subscribe(response => {
-        // this.onload2();
-        window.location.reload();
+        this.onload();
+        this.closeModal.emit();
+        // window.location.reload();
+      }, () => {
+        // this.showModalFailed = true;
       });
     }
   }
 
-  onload1() {
+  onload() {
     this.transferService.callReload();
   }
 

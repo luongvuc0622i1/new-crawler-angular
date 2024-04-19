@@ -5,8 +5,7 @@ import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-modal-new-password',
-  templateUrl: './modal-new-password.component.html',
-  styleUrl: './modal-new-password.component.css'
+  templateUrl: './modal-new-password.component.html'
 })
 export class ModalNewPasswordComponent {
   @Output() closeModal = new EventEmitter<void>();
