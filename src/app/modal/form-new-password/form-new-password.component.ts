@@ -8,7 +8,6 @@ import { AuthService } from '../../service/auth.service';
   templateUrl: './form-new-password.component.html'
 })
 export class FormNewPasswordComponent {
-  @Output() closeModal = new EventEmitter<void>();
   email: string = '';
   password: string = '';
   statusPassword: string = '';
@@ -75,14 +74,8 @@ export class FormNewPasswordComponent {
       };
       this.authService.loginEmail(objSignin).subscribe(data => {
         this.authService.signInSuccess(data);
-        this.closeModal.emit();
       })
     }, error => { })
-  }
-
-  back() {
-    this.closeModal.emit();
-    this.router.navigate(['/']);
   }
 
   formatPassword() {
