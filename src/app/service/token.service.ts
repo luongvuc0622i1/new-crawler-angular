@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 const TOKEN_KEY = 'Token_Key';
 const REFRESH_TOKEN_KEY = 'Refresh_Token_Key';
 const USERNAME_KEY = 'Username_Key';
+const EMAIL_KEY = 'Email_Key';
 const USER_IMAGE_KEY = 'User_Image_Key';
 const USER_ROLE_KEY = 'User_Role_Key';
 const TOKEN_VALID_KEY = 'Token_Valid_Key';
@@ -42,6 +43,16 @@ export class TokenService {
   public getUsername(): string {
     // @ts-ignore
     return localStorage.getItem(USERNAME_KEY);
+  }
+
+  public setEmail(email: string) {
+    localStorage.removeItem(EMAIL_KEY);
+    localStorage.setItem(EMAIL_KEY, email);
+  }
+
+  public getEmail(): string {
+    // @ts-ignore
+    return localStorage.getItem(EMAIL_KEY);
   }
 
   public setUserImage(userImage: string) {

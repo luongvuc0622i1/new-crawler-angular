@@ -207,9 +207,10 @@
   <nz-drawer nzHeight="fit-content" [nzClosable]="false" [nzVisible]="visible" nzPlacement="right"
     (nzOnClose)="close()">
     <ng-container *nzDrawerContent>
-      <nz-radio-group [(ngModel)]="category">
-        <label nz-radio nzValue="bds" (click)="onClick('bds')">BDS</label>
-        <label nz-radio nzValue="auto" (click)="onClick('auto')">AUTO</label>
+      <nz-radio-group [(ngModel)]="catName">
+        <ng-container *ngFor="let category of categoriesList;">
+          <label nz-radio [nzValue]="category.categoryName" *ngIf="category.categoryName && category.path" (click)="chooseCategory(category)">{{category.categoryName.toUpperCase()}}</label>
+        </ng-container>
       </nz-radio-group>
       <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton" style="margin-top: 16px;">
         <input type="text" nz-input [(ngModel)]="key" (keyup.enter)="onInputChange()" />

@@ -272,6 +272,7 @@ button {
 .input-search {
     padding: 10.5px;
     border-radius: 8px;
+    color: var(--layout-color);
 }
 
 .input-label {

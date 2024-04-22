@@ -1,6 +1,8 @@
 import { Component, ElementRef, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../../service/api.service';
+import { HistoryService } from '../../service/history.service';
+import { TokenService } from '../../service/token.service';
 
 @Component({
   selector: 'app-autoAll',
@@ -27,15 +29,30 @@ export class AutoAllComponent {
   colPrice: boolean = false;
 
   visible = false;
-  category: string = '';
+  catName: string = '';
+  catId: number = 1;
+  categoriesList: any;
+  email: string = '';
 
   constructor(private router: Router,
+    private tokenService: TokenService,
     private apiService: ApiService,
+    private historyService: HistoryService,
     private elementRef: ElementRef) { }
 
   ngOnInit(): void {
     this.onload();
-    this.category = this.router.url.split('/')[1] === 'home' ? 'bds' : this.router.url.split('/')[1];
+    this.apiService.getAllCategories().subscribe(response => {
+      this.categoriesList = response;
+    });
+    this.email = this.tokenService.getEmail();
+    this.historyService.getHistoryConfig(this.email, this.catId).subscribe(response => {
+      this.catName = response.categoryName;
+      this.key = response.keyword;
+      this.sortBy = response.sortBy.split(',');
+      this.colDate = this.sortBy.includes('date');
+      this.colPrice = this.sortBy.includes('price');
+    });
   }
 
   onload(): void {
@@ -63,7 +80,7 @@ export class AutoAllComponent {
   }
   
   onClick(navi: string) {
-    this.router.navigate(['/' + navi]);
+    this.router.navigate([navi]);
   }
 
   refresh(curPage: number): void {
@@ -199,5 +216,10 @@ export class AutoAllComponent {
         behavior: 'auto'
       });
     }
+  }
+
+  chooseCategory(category: any): void {
+    this.catId = category.id;
+    this.onClick(category.path);
   }
 }

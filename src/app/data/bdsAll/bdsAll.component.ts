@@ -1,6 +1,8 @@
 import { Component, ElementRef, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../../service/api.service';
+import { TokenService } from '../../service/token.service';
+import { HistoryService } from '../../service/history.service';
 
 @Component({
   selector: 'app-bdsAll',
@@ -25,15 +27,31 @@ export class BdsAllComponent {
   colPrice: boolean = false;
 
   visible = false;
-  category: string = '';
+  catName: string = '';
+  catId: number = 2;
+  categoriesList: any;
+  email: string = '';
 
   constructor(private router: Router,
+    private tokenService: TokenService,
     private apiService: ApiService,
+    private historyService: HistoryService,
     private elementRef: ElementRef) { }
 
   ngOnInit(): void {
     this.onload();
-    this.category = this.router.url.split('/')[1] === 'home' ? 'bds' : this.router.url.split('/')[1];
+    this.apiService.getAllCategories().subscribe(response => {
+      this.categoriesList = response;
+    });
+    this.email = this.tokenService.getEmail();
+    this.historyService.getHistoryConfig(this.email, this.catId).subscribe(response => {
+      this.catName = response.categoryName;
+      this.key = response.keyword;
+      this.sortBy = response.sortBy.split(',');
+      this.colDate = this.sortBy.includes('date');
+      this.colSquare = this.sortBy.includes('square');
+      this.colPrice = this.sortBy.includes('price');
+    });
   }
 
   onload(): void {
@@ -61,7 +79,7 @@ export class BdsAllComponent {
   }
 
   onClick(navi: string) {
-    this.router.navigate(['/' + navi]);
+    this.router.navigate([navi]);
   }
 
   refresh(curPage: number): void {
@@ -149,6 +167,7 @@ export class BdsAllComponent {
     }
     this.currentPage = 1;
     this.onload()
+    this.updateHistory();
   }
 
   @HostListener('window:scroll', ['$event'])
@@ -173,5 +192,15 @@ export class BdsAllComponent {
         behavior: 'auto'
       });
     }
+  }
+
+  chooseCategory(category: any): void {
+    this.catId = category.id;
+    this.onClick(category.path);
+  }
+
+  updateHistory(): void {
+    const e = this.tokenService.getEmail();
+    console.log(e);
   }
 }

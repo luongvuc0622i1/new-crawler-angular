@@ -26,6 +26,7 @@ export class AuthService {
       this.tokenService.setRefreshToken(data.refreshToken);
       this.tokenService.setTokenValid(true);
       this.tokenService.setUsername(data.username);
+      this.tokenService.setEmail(data.email);
       this.tokenService.setUserImage(data.user_image);
       this.tokenService.setUserRole(data.user_role);
       this.transferService.setShowModal(false);

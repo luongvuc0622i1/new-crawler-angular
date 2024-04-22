@@ -2,6 +2,7 @@ import { Component, ElementRef, HostListener } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ApiService } from '../../service/api.service';
 import { TokenService } from '../../service/token.service';
+import { HistoryService } from '../../service/history.service';
 
 @Component({
   selector: 'app-autoDetail',
@@ -32,9 +33,13 @@ export class AutoDetailComponent {
   role: string = this.tokenService.getUserRole();
 
   visible = false;
-  category: string = '';
+  catName: string = '';
+  catId: number = 1;
+  categoriesList: any;
+  email: string = '';
 
   constructor(private apiService: ApiService,
+    private historyService: HistoryService,
     private router: Router,
     private route: ActivatedRoute,
     private tokenService: TokenService,
@@ -45,7 +50,17 @@ export class AutoDetailComponent {
       this.id = parseInt(params['id']);
     });
     this.onload();
-    this.category = this.router.url.split('/')[1] === 'home' ? 'bds' : this.router.url.split('/')[1];
+    this.apiService.getAllCategories().subscribe(response => {
+      this.categoriesList = response;
+    });
+    this.email = this.tokenService.getEmail();
+    this.historyService.getHistoryConfig(this.email, this.catId).subscribe(response => {
+      this.catName = response.categoryName;
+      this.key = response.keyword;
+      this.sortBy = response.sortBy.split(',');
+      this.colDate = this.sortBy.includes('date');
+      this.colPrice = this.sortBy.includes('price');
+    });
   }
 
   onload(): void {
@@ -73,7 +88,7 @@ export class AutoDetailComponent {
   }
   
   onClick(navi: string) {
-    this.router.navigate(['/' + navi]);
+    this.router.navigate([navi]);
   }
 
   refresh(curPage: number): void {
@@ -205,5 +220,10 @@ export class AutoDetailComponent {
         behavior: 'auto'
       });
     }
+  }
+
+  chooseCategory(category: any): void {
+    this.catId = category.id;
+    this.onClick(category.path);
   }
 }
