@@ -111,20 +111,16 @@ export class ModalConfigComponent {
           // this.showModalSuccessfully = true;
           this.onload();
           this.closeModal.emit();
-          console.log('dung')
         }, () => {
           // this.showModalFailed = true;
-          console.log('sai')
         });
       } else {
         this.apiService.create(formData).subscribe(data => {
           // this.showModalSuccessfully = true;
           this.onload();
           this.closeModal.emit();
-          console.log('dung')
         }, () => {
           // this.showModalFailed = true;
-          console.log('sai')
         });
       }
     } else {
@@ -132,10 +128,8 @@ export class ModalConfigComponent {
         // this.showModalSuccessfully = true;
         this.onload();
         this.closeModal.emit();
-        console.log('dung')
       }, () => {
         // this.showModalFailed = true;
-        console.log('sai')
       });
     }
   }

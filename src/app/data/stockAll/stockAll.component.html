@@ -19,22 +19,11 @@
             <th class="long-text-100">
               <div class="column body-3">
                 <div></div>
-                <div>Ngày đăng</div>
-                <div class="pointer"
-                  [ngStyle]="{'color': colDate ? 'var(--secondary-active-color)' : 'var(--primary-color)'}"
-                  (click)="sortDate()">
-                  <i class="fa-solid fa-sort"></i>
-                </div>
-              </div>
-            </th>
-            <th class="long-text-200">
-              <div class="column body-3">
-                <div></div>
-                <div>Tiêu đề</div>
+                <div>Mã</div>
                 <div></div>
                 <!-- <div class="pointer"
-                  [ngStyle]="{'color': colTitle ? 'var(--secondary-active-color)' : 'var(--primary-color)'}"
-                  (click)="sortTitle()">
+                  [ngStyle]="{'color': colCode ? 'var(--secondary-active-color)' : 'var(--primary-color)'}"
+                  (click)="sortCode()">
                   <i class="fa-solid fa-sort"></i>
                 </div> -->
               </div>
@@ -42,22 +31,46 @@
             <th class="long-text-300">
               <div class="column body-3">
                 <div></div>
-                <div>Nội dung</div>
+                <div>Công ty</div>
                 <div></div>
                 <!-- <div class="pointer"
-                  [ngStyle]="{'color': colDetail ? 'var(--secondary-active-color)' : 'var(--primary-color)'}"
-                  (click)="sortDetail()">
+                  [ngStyle]="{'color': colCompany ? 'var(--secondary-active-color)' : 'var(--primary-color)'}"
+                  (click)="sortCompany()">
                   <i class="fa-solid fa-sort"></i>
                 </div> -->
               </div>
             </th>
-            <th class="long-text-100">
+            <th class="long-text-400">
               <div class="column body-3">
                 <div></div>
-                <div>Diện tích</div>
+                <div>Ngành</div>
+                <div></div>
+                <!-- <div class="pointer"
+                  [ngStyle]="{'color': colCareer ? 'var(--secondary-active-color)' : 'var(--primary-color)'}"
+                  (click)="sortCareer()">
+                  <i class="fa-solid fa-sort"></i>
+                </div> -->
+              </div>
+            </th>
+            <th class="long-text-200">
+              <div class="column body-3">
+                <div></div>
+                <div>Sàn</div>
+                <div></div>
+                <!-- <div class="pointer"
+                  [ngStyle]="{'color': colFloor ? 'var(--secondary-active-color)' : 'var(--primary-color)'}"
+                  (click)="sortFloor()">
+                  <i class="fa-solid fa-sort"></i>
+                </div> -->
+              </div>
+            </th>
+            <!-- <th class="long-text-100">
+              <div class="column body-3">
+                <div></div>
+                <div>Ngày GD</div>
                 <div class="pointer"
-                  [ngStyle]="{'color': colSquare ? 'var(--secondary-active-color)' : 'var(--primary-color)'}"
-                  (click)="sortSquare()">
+                  [ngStyle]="{'color': colDate ? 'var(--secondary-active-color)' : 'var(--primary-color)'}"
+                  (click)="sortDate()">
                   <i class="fa-solid fa-sort"></i>
                 </div>
               </div>
@@ -72,35 +85,32 @@
                   <i class="fa-solid fa-sort"></i>
                 </div>
               </div>
-            </th>
-            <th class="body-3 long-text-200">Trang</th>
+            </th> -->
           </tr>
         </thead>
         <tbody *ngIf="!loading">
           <tr *ngFor="let item of fullData" style="height: 125px;">
             <td>
+              <a href="{{item.url}}" target="_blank">
+                <div class="body-3 ta-center">{{item.stockCode}}</div>
+              </a>
+            </td>
+            <td>
+              <div class="body-5" style="max-height: 105px; overflow-y: auto;">{{item.companyName}}</div>
+            </td>
+            <td>
+              <div class="body-5" style="max-height: 105px; overflow-y: auto;">{{item.career}}</div>
+            </td>
+            <td>
+              <div class="body-5 ta-center">{{item.floor}}</div>
+            </td>
+            <!-- <td>
               <div class="body-5 ta-center">{{item.date ? item.date.slice(0, 10) : ''}}
               </div>
             </td>
             <td>
-              <a href="{{item.url}}" target="_blank">
-                <div class="body-3" style="max-height: 105px; overflow-y: auto;">{{item.title}}</div>
-              </a>
-            </td>
-            <td>
-              <div class="body-5" style="max-height: 105px; overflow-y: auto;">{{item.detail}}</div>
-            </td>
-            <td>
-              <div class="body-5 ta-center">{{item.square}}</div>
-            </td>
-            <td>
               <div class="body-5 ta-center">{{item.price}}</div>
-            </td>
-            <td>
-              <div class="body-5 ta-center" style="color: -webkit-link; cursor: pointer; text-decoration: underline;"
-                (click)="navi(item.websiteId)">
-                {{item.websiteName}}</div>
-            </td>
+            </td> -->
           </tr>
         </tbody>
         <tfoot class="parent" *ngIf="loading">
@@ -132,25 +142,33 @@
         <div nz-col class="gutter-row" [nzXs]="24" [nzSm]="12" *ngFor="let item of fullData">
           <nz-card style="width: 100%; border-radius: 8px;" [nzTitle]="titleTemplate" *ngIf="item.date">
             <nz-descriptions>
-              <nz-descriptions-item [nzTitle]="iconDate">{{item.date ? item.date.slice(0, 10) :
+              <nz-descriptions-item [nzTitle]="iconCompany">{{item.companyName}}</nz-descriptions-item>
+              <nz-descriptions-item [nzTitle]="iconCareer">{{item.career}}</nz-descriptions-item>
+              <nz-descriptions-item [nzTitle]="iconFloor">{{item.floor}}</nz-descriptions-item>
+              <!-- <nz-descriptions-item [nzTitle]="iconDate">{{item.date ? item.date.slice(0, 10) :
                 ''}}</nz-descriptions-item>
-              <nz-descriptions-item [nzTitle]="iconSquare">{{item.square}}</nz-descriptions-item>
-              <nz-descriptions-item [nzTitle]="iconPrice">{{item.price}}</nz-descriptions-item>
+              <nz-descriptions-item [nzTitle]="iconPrice">{{item.price}}</nz-descriptions-item> -->
             </nz-descriptions>
             <div class="body-5">{{item.detail}}</div>
           </nz-card>
           <ng-template #titleTemplate>
             <a href="{{item.url}}" target="_blank">
-              <div class="body-3" style="white-space: pre-wrap;">{{item.title}}</div>
+              <div class="body-3" style="white-space: pre-wrap;">{{item.stockCode}}</div>
             </a>
+          </ng-template>
+          <ng-template #iconCompany>
+            <div style="width: 30px;">Cty</div>
+          </ng-template>
+          <ng-template #iconCareer>
+            <div style="width: 30px;">Ng_</div>
+          </ng-template>
+          <ng-template #iconFloor>
+            <div style="width: 30px;">Sàn</div>
           </ng-template>
           <ng-template #iconDate>
             <div style="width: 30px;">
               <span nz-icon nzType="clock-circle" nzTheme="outline"></span>
             </div>
-          </ng-template>
-          <ng-template #iconSquare>
-            <div style="width: 30px;">S_</div>
           </ng-template>
           <ng-template #iconPrice>
             <div style="width: 30px;">Giá</div>
@@ -190,21 +208,24 @@
       </ng-template>
       <nz-divider nzText="Sắp xếp"></nz-divider>
       <div nz-row [nzGutter]="[16, 16]">
-        <div nz-col class="gutter-row" [nzSpan]="12">
-          <label nz-checkbox [ngModel]="colDate" (ngModelChange)="sortDate()">Ngày đăng</label>
-        </div>
         <!-- <div nz-col class="gutter-row" [nzSpan]="12">
-          <label nz-checkbox [ngModel]="colTitle" (ngModelChange)="sortTitle()">Tiêu đề</label>
+          <label nz-checkbox [ngModel]="colCode" (ngModelChange)="sortCode()">Mã</label>
         </div>
         <div nz-col class="gutter-row" [nzSpan]="12">
-          <label nz-checkbox [ngModel]="colDetail" (ngModelChange)="sortDetail()">Nội dung</label>
+          <label nz-checkbox [ngModel]="colCompany" (ngModelChange)="sortCompany()">Công ty</label>
+        </div>
+        <div nz-col class="gutter-row" [nzSpan]="12">
+          <label nz-checkbox [ngModel]="colCareer" (ngModelChange)="sortCareer()">Ngành</label>
+        </div>
+        <div nz-col class="gutter-row" [nzSpan]="12">
+          <label nz-checkbox [ngModel]="colFloor" (ngModelChange)="sortFloor()">Sàn</label>
         </div> -->
         <div nz-col class="gutter-row" [nzSpan]="12">
-          <label nz-checkbox [ngModel]="colSquare" (ngModelChange)="sortSquare()">Diện tích</label>
+          <label nz-checkbox [ngModel]="colDate" (ngModelChange)="sortDate()">Ngày GD</label>
         </div>
-        <div nz-col class="gutter-row" [nzSpan]="12">
+        <!-- <div nz-col class="gutter-row" [nzSpan]="12">
           <label nz-checkbox [ngModel]="colPrice" (ngModelChange)="sortPrice()">Giá</label>
-        </div>
+        </div> -->
       </div>
     </ng-container>
   </nz-drawer>

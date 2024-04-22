@@ -51,6 +51,8 @@ export class BdsAllComponent {
       this.colDate = this.sortBy.includes('date');
       this.colSquare = this.sortBy.includes('square');
       this.colPrice = this.sortBy.includes('price');
+    }, () => {
+      this.catName = this.router.url.split('/')[1];
     });
   }
 

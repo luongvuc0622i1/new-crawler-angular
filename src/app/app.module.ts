@@ -32,6 +32,7 @@ import { CategoriesComponent } from './categories/categories.component';
 import { ModalCategoryComponent } from './modal/modal-category/modal-category.component';
 import { FormNewPasswordComponent } from './modal/form-new-password/form-new-password.component';
 import { FormSignInComponent } from './modal/form-sign-in/form-sign-in.component';
+import { StockAllComponent } from './data/stockAll/stockAll.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { FormSignInComponent } from './modal/form-sign-in/form-sign-in.component
     BdsDetailComponent,
     AutoAllComponent,
     AutoDetailComponent,
+    StockAllComponent,
     ConfigurationComponent,
     ModalConfigComponent,
     ModalDeleteComponent,

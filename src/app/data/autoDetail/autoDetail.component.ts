@@ -60,6 +60,8 @@ export class AutoDetailComponent {
       this.sortBy = response.sortBy.split(',');
       this.colDate = this.sortBy.includes('date');
       this.colPrice = this.sortBy.includes('price');
+    }, () => {
+      this.catName = this.router.url.split('/')[1];
     });
   }
 

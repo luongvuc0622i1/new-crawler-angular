@@ -9,6 +9,7 @@ import { ConfigurationComponent } from './configuration/configuration.component'
 import { AutoAllComponent } from './data/autoAll/autoAll.component';
 import { AutoDetailComponent } from './data/autoDetail/autoDetail.component';
 import { CategoriesComponent } from './categories/categories.component';
+import { StockAllComponent } from './data/stockAll/stockAll.component';
 
 const routes: Routes = [
   {
@@ -42,6 +43,10 @@ const routes: Routes = [
   {
     path: 'auto/:id', canActivate: [AuthGuard],
     component: AutoDetailComponent
+  },
+  {
+    path: 'stock', canActivate: [AuthGuard],
+    component: StockAllComponent
   },
   {
     path: 'changePassword',

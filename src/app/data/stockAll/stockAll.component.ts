@@ -1,14 +1,14 @@
 import { Component, ElementRef, HostListener } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiService } from '../../service/api.service';
-import { ActivatedRoute, Params, Router } from '@angular/router';
 import { TokenService } from '../../service/token.service';
 import { HistoryService } from '../../service/history.service';
 
 @Component({
-  selector: 'app-bdsDetail',
-  templateUrl: './bdsDetail.component.html'
+  selector: 'app-stock-all',
+  templateUrl: './stockAll.component.html'
 })
-export class BdsDetailComponent {
+export class StockAllComponent {
   loading: boolean = true;
 
   fullData: any;
@@ -16,37 +16,30 @@ export class BdsDetailComponent {
 
   key: string = '';
 
-  id: number = 0;
-
   totalPages: number = 0;
   currentPage: number = 1;
 
   sortBy: string[] = [];
+  colCode: boolean = false;
+  colCompany: boolean = false;
+  colCareer: boolean = false;
+  colFloor: boolean = false;
   colDate: boolean = false;
-  colTitle: boolean = false;
-  colDetail: boolean = false;
-  colSquare: boolean = false;
   colPrice: boolean = false;
-
-  role: string = this.tokenService.getUserRole();
 
   visible = false;
   catName: string = '';
-  catId: number = 2;
+  catId: number = 3;
   categoriesList: any;
   email: string = '';
 
-  constructor(private apiService: ApiService,
-    private historyService: HistoryService,
-    private router: Router,
-    private route: ActivatedRoute,
+  constructor(private router: Router,
     private tokenService: TokenService,
+    private apiService: ApiService,
+    private historyService: HistoryService,
     private elementRef: ElementRef) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe((params: Params) => {
-      this.id = parseInt(params['id']);
-    });
     this.onload();
     this.apiService.getAllCategories().subscribe(response => {
       this.categoriesList = response;
@@ -57,7 +50,6 @@ export class BdsDetailComponent {
       this.key = response.keyword;
       this.sortBy = response.sortBy.split(',');
       this.colDate = this.sortBy.includes('date');
-      this.colSquare = this.sortBy.includes('square');
       this.colPrice = this.sortBy.includes('price');
     }, () => {
       this.catName = this.router.url.split('/')[1];
@@ -70,7 +62,7 @@ export class BdsDetailComponent {
       this.colDate = true;
       this.sortBy.push('date');
     }
-    this.apiService.getBdsItem(this.id, this.currentPage - 1, this.amount, this.key, this.sortBy.join(",")).subscribe(response => {
+    this.apiService.getStockAllItems(this.currentPage - 1, this.amount, this.key, this.sortBy.join(",")).subscribe(response => {
       this.totalPages = response.totalPages;
       this.fullData = response.content;
       this.loading = false;
@@ -87,7 +79,7 @@ export class BdsDetailComponent {
   close(): void {
     this.visible = false;
   }
-  
+
   onClick(navi: string) {
     this.router.navigate([navi]);
   }
@@ -110,12 +102,68 @@ export class BdsDetailComponent {
     this.updateHistory();
   }
 
+  // navi(id: string): void {
+  //   this.router.navigate(['/stock', id]);
+  // }
+
   removeElementFromArray<T>(arr: T[], element: T): T[] {
     const index = arr.indexOf(element);
     if (index !== -1) {
       arr.splice(index, 1);
     }
     return arr;
+  }
+
+  sortCode(): void {
+    if (!this.colCode) {
+      this.colCode = true;
+      this.sortBy.push('stockCode');
+    } else {
+      this.colCode = false;
+      this.sortBy = this.removeElementFromArray(this.sortBy, 'stockCode');
+    }
+    this.currentPage = 1;
+    this.onload();
+    this.updateHistory();
+  }
+
+  sortCompany(): void {
+    if (!this.colCompany) {
+      this.colCompany = true;
+      this.sortBy.push('companyName');
+    } else {
+      this.colCompany = false;
+      this.sortBy = this.removeElementFromArray(this.sortBy, 'companyName');
+    }
+    this.currentPage = 1;
+    this.onload();
+    this.updateHistory();
+  }
+
+  sortCareer(): void {
+    if (!this.colCareer) {
+      this.colCareer = true;
+      this.sortBy.push('career');
+    } else {
+      this.colCareer = false;
+      this.sortBy = this.removeElementFromArray(this.sortBy, 'career');
+    }
+    this.currentPage = 1;
+    this.onload();
+    this.updateHistory();
+  }
+
+  sortFloor(): void {
+    if (!this.colFloor) {
+      this.colFloor = true;
+      this.sortBy.push('floor');
+    } else {
+      this.colFloor = false;
+      this.sortBy = this.removeElementFromArray(this.sortBy, 'floor');
+    }
+    this.currentPage = 1;
+    this.onload();
+    this.updateHistory();
   }
 
   sortDate(): void {
@@ -125,45 +173,6 @@ export class BdsDetailComponent {
     } else {
       this.colDate = false;
       this.sortBy = this.removeElementFromArray(this.sortBy, 'date');
-    }
-    this.currentPage = 1;
-    this.onload();
-    this.updateHistory();
-  }
-
-  sortTitle(): void {
-    if (!this.colTitle) {
-      this.colTitle = true;
-      this.sortBy.push('title');
-    } else {
-      this.colTitle = false;
-      this.sortBy = this.removeElementFromArray(this.sortBy, 'title');
-    }
-    this.currentPage = 1;
-    this.onload();
-    this.updateHistory();
-  }
-
-  sortDetail(): void {
-    if (!this.colDetail) {
-      this.colDetail = true;
-      this.sortBy.push('detail');
-    } else {
-      this.colDetail = false;
-      this.sortBy = this.removeElementFromArray(this.sortBy, 'detail');
-    }
-    this.currentPage = 1;
-    this.onload();
-    this.updateHistory();
-  }
-
-  sortSquare(): void {
-    if (!this.colSquare) {
-      this.colSquare = true;
-      this.sortBy.push('square');
-    } else {
-      this.colSquare = false;
-      this.sortBy = this.removeElementFromArray(this.sortBy, 'square');
     }
     this.currentPage = 1;
     this.onload();
@@ -196,7 +205,7 @@ export class BdsDetailComponent {
         this.colDate = true;
         this.sortBy.push('date');
       }
-      this.apiService.getBdsItem(this.id, this.currentPage - 1, this.amount, this.key, this.sortBy.join(",")).subscribe(response => {
+      this.apiService.getStockAllItems(this.currentPage - 1, this.amount, this.key, this.sortBy.join(",")).subscribe(response => {
         this.fullData = this.fullData.concat(response.content);
       }, () => { });
 

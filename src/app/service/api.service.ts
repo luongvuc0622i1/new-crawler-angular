@@ -27,6 +27,10 @@ export class ApiService {
     return this.http.get<any>(`${API_URL}/car-search?page=${page}&size=${size}&keyword=${key}&sortBy=${sortBy}`);
   }
 
+  getStockAllItems(page: number, size: number, key: string, sortBy: string): Observable<any> {
+    return this.http.get<any>(`${API_URL}/stock-search?page=${page}&size=${size}&keyword=${key}&sortBy=${sortBy}`);
+  }
+
   // crawler
   crawlerBds(id: number): Observable<any> {
     return this.http.get<any>(`${API_URL}/getAllData/${id}`);
