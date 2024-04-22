@@ -157,21 +157,29 @@
             </a>
           </ng-template>
           <ng-template #iconCompany>
-            <div style="width: 30px;">Cty</div>
+            <div style="width: 30px;">
+              <i class="fa-solid fa-briefcase"></i>
+            </div>
           </ng-template>
           <ng-template #iconCareer>
-            <div style="width: 30px;">Ng_</div>
+            <div style="width: 30px;">
+              <i class="fa-regular fa-clipboard"></i>
+            </div>
           </ng-template>
           <ng-template #iconFloor>
-            <div style="width: 30px;">Sàn</div>
+            <div style="width: 30px;">
+              <i class="fa-solid fa-chart-line"></i>
+            </div>
           </ng-template>
           <ng-template #iconDate>
             <div style="width: 30px;">
-              <span nz-icon nzType="clock-circle" nzTheme="outline"></span>
+              <i class="fa-solid fa-clock"></i>
             </div>
           </ng-template>
           <ng-template #iconPrice>
-            <div style="width: 30px;">Giá</div>
+            <div style="width: 30px;">
+              <i class="fa-solid fa-money-bill"></i>
+            </div>
           </ng-template>
         </div>
       </div>
@@ -185,17 +193,17 @@
     </div>
   </div>
   <div class="relative">
-    <!-- <div class="open-drawer"> -->
-    <div class="button-up" (click)="open()" (touchstart)="open()"><span nz-icon style="font-size: 18px; color: white;"
-        nzType="left" nzTheme="outline"></span></div>
-    <!-- </div> -->
+    <div class="button-up" (click)="open()" (touchstart)="open()">
+      <i class="fa-solid fa-caret-left" style="position: absolute; font-size: 20px; color: white; left: 6px;"></i>
+    </div>
   </div>
   <nz-drawer nzHeight="fit-content" [nzClosable]="false" [nzVisible]="visible" nzPlacement="right"
     (nzOnClose)="close()">
     <ng-container *nzDrawerContent>
       <nz-radio-group [(ngModel)]="catName">
         <ng-container *ngFor="let category of categoriesList;">
-          <label nz-radio [nzValue]="category.categoryName" *ngIf="category.categoryName && category.path" (click)="chooseCategory(category)">{{category.categoryName.toUpperCase()}}</label>
+          <label nz-radio [nzValue]="category.categoryName" *ngIf="category.categoryName && category.path"
+            (click)="chooseCategory(category)">{{category.categoryName.toUpperCase()}}</label>
         </ng-container>
       </nz-radio-group>
       <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton" style="margin-top: 16px;">

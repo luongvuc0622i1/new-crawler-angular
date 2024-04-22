@@ -80,10 +80,15 @@
             </a>
           </ng-template>
           <ng-template #iconEmail>
-            <div style="width: 30px;">Mail</div>
+            <div style="width: 30px;">
+              <i class="fa-solid fa-envelope"></i>
+            </div>
           </ng-template>
           <ng-template #iconRole>
-            <div style="width: 30px;">Role</div>
+            <div style="width: 30px;">
+              <i class="fa-solid fa-user-tie" *ngIf="item.user_role.toLowerCase() === 'admin'"></i>
+              <i class="fa-regular fa-user" *ngIf="item.user_role.toLowerCase() !== 'admin'"></i>
+            </div>
           </ng-template>
           <ng-template #actionEdit>
             <span nz-icon nzType="edit" (click)="editMobile(item.id)" *ngIf="item.email"></span>
@@ -103,10 +108,9 @@
     </div>
   </div>
   <div class="relative">
-    <!-- <div class="open-drawer"> -->
-    <div class="button-up" (click)="createMobile()" (touchstart)="createMobile()"><span nz-icon style="font-size: 18px; color: white;"
-        nzType="left" nzTheme="outline"></span></div>
-    <!-- </div> -->
+    <div class="button-up" (click)="createMobile()" (touchstart)="createMobile()">
+      <i class="fa-solid fa-caret-left" style="position: absolute; font-size: 20px; color: white; left: 6px;"></i>
+    </div>
   </div>
   <nz-drawer nzHeight="fit-content" [nzClosable]="false" [nzVisible]="visible" nzPlacement="right" nzWidth="75%"
     (nzOnClose)="close()">

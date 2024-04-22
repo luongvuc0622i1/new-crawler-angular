@@ -84,10 +84,14 @@
             </a>
           </ng-template>
           <ng-template #iconUrl>
-            <div style="width: 30px;">Url</div>
+            <div style="width: 30px;">
+              <i class="fa-solid fa-link"></i>
+            </div>
           </ng-template>
           <ng-template #iconType>
-            <div style="width: 30px;">Loại</div>
+            <div style="width: 30px;">
+              <i class="fa-solid fa-list-ul"></i>
+            </div>
           </ng-template>
           <ng-template #actionCrawler>
             <div (click)="crawler(item)">Crawler</div>
@@ -110,10 +114,9 @@
     </div>
   </div>
   <div class="relative">
-    <!-- <div class="open-drawer"> -->
-    <div class="button-up" (click)="createMobile()" (touchstart)="createMobile()"><span nz-icon style="font-size: 18px; color: white;"
-        nzType="left" nzTheme="outline"></span></div>
-    <!-- </div> -->
+    <div class="button-up" (click)="createMobile()" (touchstart)="createMobile()">
+      <i class="fa-solid fa-caret-left" style="position: absolute; font-size: 20px; color: white; left: 6px;"></i>
+    </div>
   </div>
   <nz-drawer nzHeight="fit-content" [nzClosable]="false" [nzVisible]="visible" nzPlacement="right" nzWidth="75%"
     (nzOnClose)="close()">
