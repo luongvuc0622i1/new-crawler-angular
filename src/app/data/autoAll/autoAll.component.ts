@@ -86,16 +86,19 @@ export class AutoAllComponent {
   refresh(curPage: number): void {
     this.currentPage = curPage;
     this.onload();
+    this.updateHistory();
   }
 
   onInputChange(): void {
     this.currentPage = 1;
     this.onload();
+    this.updateHistory();
   }
 
   handleSelected(): void {
     this.currentPage = 1;
     this.onload();
+    this.updateHistory();
   }
 
   navi(id: string): void {
@@ -119,7 +122,8 @@ export class AutoAllComponent {
       this.sortBy = this.removeElementFromArray(this.sortBy, 'date');
     }
     this.currentPage = 1;
-    this.onload()
+    this.onload();
+    this.updateHistory();
   }
 
   sortTitle(): void {
@@ -131,7 +135,8 @@ export class AutoAllComponent {
       this.sortBy = this.removeElementFromArray(this.sortBy, 'title');
     }
     this.currentPage = 1;
-    this.onload()
+    this.onload();
+    this.updateHistory();
   }
 
   sortDetail(): void {
@@ -143,7 +148,8 @@ export class AutoAllComponent {
       this.sortBy = this.removeElementFromArray(this.sortBy, 'detail');
     }
     this.currentPage = 1;
-    this.onload()
+    this.onload();
+    this.updateHistory();
   }
 
   sortGear(): void {
@@ -155,7 +161,8 @@ export class AutoAllComponent {
       this.sortBy = this.removeElementFromArray(this.sortBy, 'gear');
     }
     this.currentPage = 1;
-    this.onload()
+    this.onload();
+    this.updateHistory();
   }
 
   sortEngine(): void {
@@ -167,7 +174,8 @@ export class AutoAllComponent {
       this.sortBy = this.removeElementFromArray(this.sortBy, 'engine');
     }
     this.currentPage = 1;
-    this.onload()
+    this.onload();
+    this.updateHistory();
   }
 
   sortType(): void {
@@ -179,7 +187,8 @@ export class AutoAllComponent {
       this.sortBy = this.removeElementFromArray(this.sortBy, 'type');
     }
     this.currentPage = 1;
-    this.onload()
+    this.onload();
+    this.updateHistory();
   }
 
   sortPrice(): void {
@@ -191,7 +200,8 @@ export class AutoAllComponent {
       this.sortBy = this.removeElementFromArray(this.sortBy, 'price');
     }
     this.currentPage = 1;
-    this.onload()
+    this.onload();
+    this.updateHistory();
   }
 
   @HostListener('window:scroll', ['$event'])
@@ -221,5 +231,16 @@ export class AutoAllComponent {
   chooseCategory(category: any): void {
     this.catId = category.id;
     this.onClick(category.path);
+  }
+
+  updateHistory(): void {
+    const email = this.tokenService.getEmail();
+    const obj = {
+      "email": email,
+      "categoryId": this.catId,
+      "keyword": this.key,
+      "sortBy": this.sortBy.join(',')
+    }
+    this.historyService.updateCategory(obj).subscribe(response => { }, () => { });
   }
 }

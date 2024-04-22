@@ -85,16 +85,19 @@ export class BdsAllComponent {
   refresh(curPage: number): void {
     this.currentPage = curPage;
     this.onload();
+    this.updateHistory();
   }
 
   onInputChange(): void {
     this.currentPage = 1;
     this.onload();
+    this.updateHistory();
   }
 
   handleSelected(): void {
     this.currentPage = 1;
     this.onload();
+    this.updateHistory();
   }
 
   navi(id: string): void {
@@ -118,7 +121,8 @@ export class BdsAllComponent {
       this.sortBy = this.removeElementFromArray(this.sortBy, 'date');
     }
     this.currentPage = 1;
-    this.onload()
+    this.onload();
+    this.updateHistory();
   }
 
   sortTitle(): void {
@@ -130,7 +134,8 @@ export class BdsAllComponent {
       this.sortBy = this.removeElementFromArray(this.sortBy, 'title');
     }
     this.currentPage = 1;
-    this.onload()
+    this.onload();
+    this.updateHistory();
   }
 
   sortDetail(): void {
@@ -142,7 +147,8 @@ export class BdsAllComponent {
       this.sortBy = this.removeElementFromArray(this.sortBy, 'detail');
     }
     this.currentPage = 1;
-    this.onload()
+    this.onload();
+    this.updateHistory();
   }
 
   sortSquare(): void {
@@ -154,7 +160,8 @@ export class BdsAllComponent {
       this.sortBy = this.removeElementFromArray(this.sortBy, 'square');
     }
     this.currentPage = 1;
-    this.onload()
+    this.onload();
+    this.updateHistory();
   }
 
   sortPrice(): void {
@@ -166,7 +173,7 @@ export class BdsAllComponent {
       this.sortBy = this.removeElementFromArray(this.sortBy, 'price');
     }
     this.currentPage = 1;
-    this.onload()
+    this.onload();
     this.updateHistory();
   }
 
@@ -200,7 +207,13 @@ export class BdsAllComponent {
   }
 
   updateHistory(): void {
-    const e = this.tokenService.getEmail();
-    console.log(e);
+    const email = this.tokenService.getEmail();
+    const obj = {
+      "email": email,
+      "categoryId": this.catId,
+      "keyword": this.key,
+      "sortBy": this.sortBy.join(',')
+    }
+    this.historyService.updateCategory(obj).subscribe(response => { }, () => { });
   }
 }
