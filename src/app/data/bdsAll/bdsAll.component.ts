@@ -17,6 +17,7 @@ export class BdsAllComponent {
   key: string = '';
 
   totalPages: number = 0;
+  totalElements: number = 0;
   currentPage: number = 1;
 
   sortBy: string[] = [];
@@ -39,7 +40,6 @@ export class BdsAllComponent {
     private elementRef: ElementRef) { }
 
   ngOnInit(): void {
-    this.onload();
     this.apiService.getAllCategories().subscribe(response => {
       this.categoriesList = response;
     });
@@ -51,8 +51,10 @@ export class BdsAllComponent {
       this.colDate = this.sortBy.includes('date');
       this.colSquare = this.sortBy.includes('square');
       this.colPrice = this.sortBy.includes('price');
+      this.onload();
     }, () => {
       this.catName = this.router.url.split('/')[1];
+      this.onload();
     });
   }
 
@@ -64,6 +66,7 @@ export class BdsAllComponent {
     }
     this.apiService.getBdsAllItems(this.currentPage - 1, this.amount, this.key, this.sortBy.join(",")).subscribe(response => {
       this.totalPages = response.totalPages;
+      this.totalElements = response.totalElements;
       this.fullData = response.content;
       this.loading = false;
     }, () => {
@@ -87,7 +90,6 @@ export class BdsAllComponent {
   refresh(curPage: number): void {
     this.currentPage = curPage;
     this.onload();
-    this.updateHistory();
   }
 
   onInputChange(): void {
@@ -99,7 +101,6 @@ export class BdsAllComponent {
   handleSelected(): void {
     this.currentPage = 1;
     this.onload();
-    this.updateHistory();
   }
 
   navi(id: string): void {

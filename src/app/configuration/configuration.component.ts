@@ -15,6 +15,7 @@ export class ConfigurationComponent {
   amount: number = 10;
 
   totalPages: number = 0;
+  totalElements: number = 0;
   currentPage: number = 1;
 
   visible = false;
@@ -37,6 +38,7 @@ export class ConfigurationComponent {
   onload(): void {
     this.apiService.getPages(this.currentPage - 1, this.amount).subscribe(response => {
       this.totalPages = response.totalPages;
+      this.totalElements = response.totalElements;
       this.fullData = response.content;
     }, () => {
       this.fullData = Array.from({ length: this.amount }, () => ({}));

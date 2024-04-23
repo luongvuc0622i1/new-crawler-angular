@@ -23,9 +23,11 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzRadioModule } from 'ng-zorro-antd/radio';
+import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
 import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { CategoriesComponent } from './categories/categories.component';
@@ -66,9 +68,11 @@ import { StockAllComponent } from './data/stockAll/stockAll.component';
     NzDividerModule,
     NzGridModule,
     NzCardModule,
+    NzPaginationModule,
     NzCheckboxModule,
     NzInputModule,
     NzRadioModule,
+    NzSelectModule,
     NzDescriptionsModule,
     NzDrawerModule
   ],

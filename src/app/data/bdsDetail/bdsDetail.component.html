@@ -108,15 +108,11 @@
       </table>
       <div class="footer" style="height: 65px;">
         <div class="sub-header" style="margin: 10px; align-items: center; justify-content: center;">
-          <app-pagination *ngIf="totalPages > 1" [totalPages]="totalPages" [currentPage]="currentPage"
-            (refresh)="refresh($event)"></app-pagination>
-          <select class="select" style="cursor: pointer;" [(ngModel)]="amount" (change)="handleSelected()">
+          <nz-pagination *ngIf="totalPages > 1" [nzPageIndex]="currentPage" [nzTotal]="totalElements" (nzPageIndexChange)="refresh($event)"></nz-pagination>
+          <select *ngIf="totalElements >= 50" class="select" style="cursor: pointer;" [(ngModel)]="amount" (change)="handleSelected()">
             <option>50</option>
-            <option>100</option>
-            <option>200</option>
-            <option>300</option>
-            <option>500</option>
-            <option>1000</option>
+            <option *ngIf="totalElements >= 100">100</option>
+            <option *ngIf="totalElements >= 200">200</option>
           </select>
         </div>
       </div>

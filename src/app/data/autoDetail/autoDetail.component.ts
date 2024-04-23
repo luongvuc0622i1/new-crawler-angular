@@ -19,6 +19,7 @@ export class AutoDetailComponent {
   id: number = 0;
 
   totalPages: number = 0;
+  totalElements: number = 0;
   currentPage: number = 1;
 
   sortBy: string[] = [];
@@ -49,7 +50,6 @@ export class AutoDetailComponent {
     this.route.params.subscribe((params: Params) => {
       this.id = parseInt(params['id']);
     });
-    this.onload();
     this.apiService.getAllCategories().subscribe(response => {
       this.categoriesList = response;
     });
@@ -60,8 +60,10 @@ export class AutoDetailComponent {
       this.sortBy = response.sortBy.split(',');
       this.colDate = this.sortBy.includes('date');
       this.colPrice = this.sortBy.includes('price');
+      this.onload();
     }, () => {
       this.catName = this.router.url.split('/')[1];
+      this.onload();
     });
   }
 
@@ -73,6 +75,7 @@ export class AutoDetailComponent {
     }
     this.apiService.getAutoItem(this.id, this.currentPage - 1, this.amount, this.key, this.sortBy.join(",")).subscribe(response => {
       this.totalPages = response.totalPages;
+      this.totalElements = response.totalElements;
       this.fullData = response.content;
       this.loading = false;
     }, () => {
@@ -96,7 +99,6 @@ export class AutoDetailComponent {
   refresh(curPage: number): void {
     this.currentPage = curPage;
     this.onload();
-    this.updateHistory();
   }
 
   onInputChange(): void {
@@ -108,7 +110,6 @@ export class AutoDetailComponent {
   handleSelected(): void {
     this.currentPage = 1;
     this.onload();
-    this.updateHistory();
   }
 
   removeElementFromArray<T>(arr: T[], element: T): T[] {
