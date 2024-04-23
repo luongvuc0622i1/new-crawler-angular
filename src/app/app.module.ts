@@ -6,7 +6,6 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalConfigComponent } from './modal/modal-config/modal-config.component';
 import { TransferService } from './service/transfer.service';
-import { PaginationComponent } from './pagination/pagination.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { Auth_interceptor } from './service/auth_interceptor';
 import { ModalSignupComponent } from './modal/modal-signup/modal-signup.component';
@@ -49,7 +48,6 @@ import { StockAllComponent } from './data/stockAll/stockAll.component';
     ModalDeleteComponent,
     ModalSignupComponent,
     ModalCategoryComponent,
-    PaginationComponent,
     NavigationComponent,
     LandingComponent,
     AccountsComponent,
