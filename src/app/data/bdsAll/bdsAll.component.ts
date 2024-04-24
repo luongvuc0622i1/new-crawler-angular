@@ -45,17 +45,18 @@ export class BdsAllComponent {
     });
     this.email = this.tokenService.getEmail();
     this.historyService.getHistoryConfig(this.email, this.catId).subscribe(response => {
-      this.catName = response.categoryName;
-      this.key = response.keyword;
-      this.sortBy = response.sortBy.split(',');
-      this.colDate = this.sortBy.includes('date');
-      this.colSquare = this.sortBy.includes('square');
-      this.colPrice = this.sortBy.includes('price');
+      if (response) {
+        this.catName = response.categoryName;
+        this.key = response.keyword;
+        this.sortBy = response.sortBy.split(',');
+        this.colDate = this.sortBy.includes('date');
+        this.colSquare = this.sortBy.includes('square');
+        this.colPrice = this.sortBy.includes('price');
+      } else {
+        this.catName = this.router.url.split('/')[1];
+      }
       this.onload();
-    }, () => {
-      this.catName = this.router.url.split('/')[1];
-      this.onload();
-    });
+    }, () => { });
   }
 
   onload(): void {
