@@ -53,10 +53,6 @@ export class CategoriesComponent {
     this.visible = false;
   }
 
-  onClick(navi: string) {
-    this.router.navigate(['/' + navi]);
-  }
-
   onClick2(path: string) {
     this.router.navigate([path]);
   }

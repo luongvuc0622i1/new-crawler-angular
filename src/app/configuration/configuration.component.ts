@@ -65,24 +65,17 @@ export class ConfigurationComponent {
 
   crawler(item: any): void {
     this.loading = true;
-    if (item.type === 'bds' || item.type === 'auto') {
-      let crawlerFunction;
-      switch (item.type) {
-        case 'bds':
-          crawlerFunction = this.apiService.crawlerBds;
-          break;
-        case 'auto':
-          crawlerFunction = this.apiService.crawlerAuto;
-          break;
-        default:
-          break;
-      }
-      if (crawlerFunction) {
-        crawlerFunction(parseInt(item.id)).subscribe(response => {
-          this.refresh(1);
-          this.loading = false;
-        }, () => { });
-      }
+    if (item.type === 'bds') {
+      this.apiService.crawlerBds(parseInt(item.id)).subscribe(response => {
+        this.refresh(1);
+        this.loading = false;
+      }, () => { });
+    }
+    if (item.type === 'auto') {
+      this.apiService.crawlerAuto(parseInt(item.id)).subscribe(response => {
+        this.refresh(1);
+        this.loading = false;
+      }, () => { });
     }
   }
 
