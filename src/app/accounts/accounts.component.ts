@@ -52,6 +52,11 @@ export class AccountsComponent {
   close(): void {
     this.visible = false;
   }
+
+  handleSelected(): void {
+    this.currentPage = 1;
+    this.onload();
+  }
   
   onClick(navi: string) {
     this.router.navigate(['/' + navi]);

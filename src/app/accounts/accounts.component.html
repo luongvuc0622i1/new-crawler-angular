@@ -56,7 +56,16 @@
         </tfoot>
       </table>
       <div class="footer" style="height: 65px;">
-        <nz-pagination *ngIf="totalPages > 1" [nzPageIndex]="currentPage" [nzTotal]="totalElements" (nzPageIndexChange)="refresh($event)"></nz-pagination>
+        <div class="sub-header" style="margin: 10px; align-items: center; justify-content: center;">
+          <nz-pagination *ngIf="totalPages > 1" [nzPageIndex]="currentPage" [nzTotal]="totalElements"
+            (nzPageIndexChange)="refresh($event)"></nz-pagination>
+          <select *ngIf="totalElements >= 50" class="select" style="cursor: pointer;" [(ngModel)]="amount"
+            (change)="handleSelected()">
+            <option>50</option>
+            <option *ngIf="totalElements >= 100">100</option>
+            <option *ngIf="totalElements >= 200">200</option>
+          </select>
+        </div>
       </div>
     </div>
   </div>
@@ -93,7 +102,8 @@
             <span nz-icon nzType="edit" (click)="editMobile(item.id)" *ngIf="item.email"></span>
           </ng-template>
           <ng-template #actionDelete>
-            <span nz-icon nzType="delete" nzTheme="outline" (click)="deleteMobile(item.id)" *ngIf="item.email && item.user_role.toLowerCase() !== 'admin'"></span>
+            <span nz-icon nzType="delete" nzTheme="outline" (click)="deleteMobile(item.id)"
+              *ngIf="item.email && item.user_role.toLowerCase() !== 'admin'"></span>
           </ng-template>
         </div>
       </div>

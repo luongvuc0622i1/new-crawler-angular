@@ -79,6 +79,11 @@ export class ConfigurationComponent {
     }
   }
 
+  handleSelected(): void {
+    this.currentPage = 1;
+    this.onload();
+  }
+
   navi(item: any): void {
     this.router.navigate(['/' + item.type, item.id]);
   }

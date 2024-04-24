@@ -53,7 +53,12 @@ export class CategoriesComponent {
     this.visible = false;
   }
 
-  onClick2(path: string) {
+  handleSelected(): void {
+    this.currentPage = 1;
+    this.onload();
+  }
+
+  onClick(path: string) {
     this.router.navigate([path]);
   }
 
