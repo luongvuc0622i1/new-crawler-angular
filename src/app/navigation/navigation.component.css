@@ -1,6 +1,5 @@
 /* Nội dung dropdown */
 .dropdown-content {
-    display: none;
     border-radius: 3px;
     position: absolute;
     background-color: var(--layout-color);

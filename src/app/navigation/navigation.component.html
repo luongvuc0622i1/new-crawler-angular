@@ -10,10 +10,10 @@
         </a>
       </ng-container>
     </div>
-    <div class="nav-actions pointer" (click)="toggleSetting()" *ngIf="isTokenValid">
-      <img src={{img}} />
+    <div class="nav-actions pointer" (click)="toggleDropdown()">
+      <img src={{img}}/>
       <div class="username">{{this.username}} <i class="fa-solid fa-chevron-down"></i></div>
-      <div id="nav-dropdown" class="dropdown-content">
+      <div id="nav-dropdown" class="dropdown-content dropdown" *ngIf="dropdownOpen">
         <div (click)="onClick('/home')">
           <a>
             <i class="fa-solid fa-house" style="width: 20px;"></i>

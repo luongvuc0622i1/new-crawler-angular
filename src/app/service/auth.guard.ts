@@ -26,14 +26,12 @@ export class AuthGuard implements CanActivate {
       // Gọi hàm kiểm tra tính hợp lệ của token và cập nhật giá trị của isTokenValid
       return this.authService.checkTokenValidity(token).pipe(
         map(data => {
-          this.tokenService.setTokenValid(true);
           return true;
         }),
         catchError(error => {
           return this.authService.refreshToken(refreshToken).pipe(
             map(data => {
               this.tokenService.setToken(data.token);
-              this.tokenService.setTokenValid(true);
               return true;
             }),
             catchError(refreshError => {

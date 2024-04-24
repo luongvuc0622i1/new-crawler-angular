@@ -6,7 +6,6 @@ const USERNAME_KEY = 'Username_Key';
 const EMAIL_KEY = 'Email_Key';
 const USER_IMAGE_KEY = 'User_Image_Key';
 const USER_ROLE_KEY = 'User_Role_Key';
-const TOKEN_VALID_KEY = 'Token_Valid_Key';
 
 @Injectable({
   providedIn: 'root'
@@ -73,17 +72,5 @@ export class TokenService {
   public getUserRole(): string {
     // @ts-ignore
     return localStorage.getItem(USER_ROLE_KEY);
-  }
-
-  public setTokenValid(tokenValid: boolean) {
-    localStorage.removeItem(TOKEN_VALID_KEY);
-    localStorage.setItem(TOKEN_VALID_KEY, JSON.stringify(tokenValid));
-  }
-
-  public getTokenValid(): boolean {
-    if (localStorage.getItem(TOKEN_VALID_KEY)) {
-      // @ts-ignore
-      return JSON.parse(localStorage.getItem(TOKEN_VALID_KEY));
-    } else return false;
   }
 }

@@ -24,7 +24,6 @@ export class AuthService {
       this.router.navigate(['/home']);
       this.tokenService.setToken(data.token);
       this.tokenService.setRefreshToken(data.refreshToken);
-      this.tokenService.setTokenValid(true);
       this.tokenService.setUsername(data.username);
       this.tokenService.setEmail(data.email);
       this.tokenService.setUserImage(data.user_image);
