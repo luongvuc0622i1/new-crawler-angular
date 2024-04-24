@@ -58,6 +58,8 @@ export class NavigationComponent {
 
   @HostListener('document:click', ['$event'])
   @HostListener('document:touchmove', ['$event'])
+  @HostListener('document:touchstart', ['$event'])
+  @HostListener('document:touchend', ['$event'])
   @HostListener('document:mousewheel', ['$event'])
   @HostListener('document:wheel', ['$event'])
   onInteraction(event: Event) {
