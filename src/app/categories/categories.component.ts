@@ -30,6 +30,7 @@ export class CategoriesComponent {
   ngOnInit(): void {
     this.onload();
     this.subscription = this.transferService.callReload$.subscribe(() => {
+      this.currentPage = 1;
       this.onload();
     });
   }

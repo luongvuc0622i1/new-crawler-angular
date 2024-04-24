@@ -23,7 +23,7 @@ export class Auth_interceptor implements HttpInterceptor {
           else if (res.error.status) errorCode = res.error.status;
           if(errorCode === 401) {
             localStorage.clear();
-            this.router.navigate(['/']);
+            this.router.navigate(['/login']);
           }
         }
 

@@ -29,8 +29,6 @@ export class BdsDetailComponent {
   colSquare: boolean = false;
   colPrice: boolean = false;
 
-  role: string = this.tokenService.getUserRole();
-
   visible = false;
   catName: string = '';
   catId: number = 2;

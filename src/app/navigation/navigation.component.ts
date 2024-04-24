@@ -32,12 +32,12 @@ export class NavigationComponent {
     });
   }
 
-  ngDoCheck(): void {
-    this.username = this.tokenService.getUsername().toUpperCase();
-    this.role = this.tokenService.getUserRole();
-    let image = this.tokenService.getUserImage();
-    this.img = image !== 'null' ? image : "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcThRSug_V2Rrhkaz0SHavzG-uqzh8M8fms_IzQH3rz5gMy9tyXZ";
-  }
+  // ngDoCheck(): void {
+  //   this.username = this.tokenService.getUsername().toUpperCase();
+  //   this.role = this.tokenService.getUserRole();
+  //   let image = this.tokenService.getUserImage();
+  //   this.img = image !== 'null' ? image : "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcThRSug_V2Rrhkaz0SHavzG-uqzh8M8fms_IzQH3rz5gMy9tyXZ";
+  // }
 
   logout() {
     this.authService.logout().subscribe(data => {

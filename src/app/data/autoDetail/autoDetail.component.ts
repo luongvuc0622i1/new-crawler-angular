@@ -31,8 +31,6 @@ export class AutoDetailComponent {
   colType: boolean = false;
   colPrice: boolean = false;
 
-  role: string = this.tokenService.getUserRole();
-
   visible = false;
   catName: string = '';
   catId: number = 1;
