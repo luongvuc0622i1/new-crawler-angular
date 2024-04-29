@@ -13,15 +13,15 @@ import { StockAllComponent } from './data/stockAll/stockAll.component';
 
 const routes: Routes = [
   {
-    path: 'config', canActivate: [AuthGuard],
+    path: 'config',
     component: ConfigurationComponent
   },
   {
-    path: 'accounts', canActivate: [AuthGuard],
+    path: 'accounts',
     component: AccountsComponent
   },
   {
-    path: 'categories', canActivate: [AuthGuard],
+    path: 'categories',
     component: CategoriesComponent
   },
   {
@@ -29,23 +29,23 @@ const routes: Routes = [
     redirectTo: '/bds'
   },
   {
-    path: 'bds', canActivate: [AuthGuard],
+    path: 'bds',
     component: BdsAllComponent
   },
   {
-    path: 'bds/:id', canActivate: [AuthGuard],
+    path: 'bds/:id',
     component: BdsDetailComponent
   },
   {
-    path: 'auto', canActivate: [AuthGuard],
+    path: 'auto',
     component: AutoAllComponent
   },
   {
-    path: 'auto/:id', canActivate: [AuthGuard],
+    path: 'auto/:id',
     component: AutoDetailComponent
   },
   {
-    path: 'stock', canActivate: [AuthGuard],
+    path: 'stock',
     component: StockAllComponent
   },
   {

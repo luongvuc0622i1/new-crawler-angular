@@ -1,15 +1,24 @@
 import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, switchMap } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { AuthService } from './auth.service';
+import { TokenService } from './token.service';
+import { Location } from '@angular/common';
 
 @Injectable()
 export class Auth_interceptor implements HttpInterceptor {
-  constructor(private router: Router) { }
+  private isRefreshing = false;
+
+  constructor(private router: Router,
+    private tokenService: TokenService,
+    private authService: AuthService,
+    private location: Location
+  ) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const token = localStorage.getItem("Token_Key");
+    const token = this.tokenService.getToken();
     if (token) {
       request = request.clone({
         setHeaders: { Authorization: 'Bearer ' + token }
@@ -17,19 +26,53 @@ export class Auth_interceptor implements HttpInterceptor {
     }
     return next.handle(request).pipe(
       catchError((res: HttpErrorResponse) => {
-        if (res.error) {
-          let errorCode;
-          if (res.error.errorCode) errorCode = res.error.errorCode;
-          else if (res.error.status) errorCode = res.error.status;
-          if(errorCode === 401) {
+        if (res.status === 401) {
+          if (request.headers.has('Authorization')) {
+            request = request.clone({
+              headers: request.headers.delete('Authorization')
+            });
+          }
+          return this.handleUnauthorizedError(request, next);
+        }
+        return throwError(() => res);
+      })
+    );
+  }
+
+  private handleUnauthorizedError(request: HttpRequest<any>, next: HttpHandler) {
+    if (!this.isRefreshing) {
+      this.isRefreshing = true;
+
+      const refreshToken = this.tokenService.getRefreshToken();
+      return this.authService.refreshToken(refreshToken).pipe(
+        switchMap((res) => {
+          this.isRefreshing = false;
+          this.tokenService.setToken(res.token)
+          this.tokenService.setRefreshToken(res.refreshToken)
+          request = request.clone({
+            setHeaders: { Authorization: 'Bearer ' + res.token }
+          });
+          this.reloadComponent();
+          return next.handle(request);
+        }),
+        catchError((error) => {
+          this.isRefreshing = false;
+
+          if (error.status == '403') {
             localStorage.clear();
             this.router.navigate(['/login']);
           }
-        }
+          return throwError(() => error);
+        })
+      )
+    }
+    return next.handle(request);
+  }
 
-        // Pass the error through to the next error handler
-        return throwError(res);
-      })
-    );
+  private reloadComponent() {
+    const currentUrl = this.location.path();
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigateByUrl(currentUrl);
+    });
   }
 }
