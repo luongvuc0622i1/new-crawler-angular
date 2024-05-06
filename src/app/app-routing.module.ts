@@ -13,39 +13,35 @@ import { StockAllComponent } from './data/stockAll/stockAll.component';
 
 const routes: Routes = [
   {
-    path: 'config',
+    path: 'config', canActivate: [AuthGuard],
     component: ConfigurationComponent
   },
   {
-    path: 'accounts',
+    path: 'accounts', canActivate: [AuthGuard],
     component: AccountsComponent
   },
   {
-    path: 'categories',
+    path: 'categories', canActivate: [AuthGuard],
     component: CategoriesComponent
   },
   {
-    path: 'home',
-    redirectTo: '/bds'
-  },
-  {
-    path: 'bds',
+    path: 'bds', canActivate: [AuthGuard],
     component: BdsAllComponent
   },
   {
-    path: 'bds/:id',
+    path: 'bds/:id', canActivate: [AuthGuard],
     component: BdsDetailComponent
   },
   {
-    path: 'auto',
+    path: 'auto', canActivate: [AuthGuard],
     component: AutoAllComponent
   },
   {
-    path: 'auto/:id',
+    path: 'auto/:id', canActivate: [AuthGuard],
     component: AutoDetailComponent
   },
   {
-    path: 'stock',
+    path: 'stock', canActivate: [AuthGuard],
     component: StockAllComponent
   },
   {

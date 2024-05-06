@@ -1,47 +1,19 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
-import { Observable, catchError, map, of } from 'rxjs';
+import { CanActivate, Router } from '@angular/router';
+import { Observable, of } from 'rxjs';
 import { TokenService } from './token.service';
-import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
   constructor(private tokenService: TokenService,
-    private authService: AuthService,
     private router: Router) { }
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | boolean {
-    // Perform your authentication logic here
-    // For example, check if the user is logged in
-
+  canActivate(): Observable<boolean> | boolean {
     const token = this.tokenService.getToken();
-    const refreshToken = this.tokenService.getRefreshToken();
-    // const role = this.tokenService.getUserRole();
-    // const url = state.url;
-
-    // if (token && (role.toLowerCase() === 'admin' || (url !== '/accounts' && url !== '/config'))) {
-      if (token) {
-      // Gọi hàm kiểm tra tính hợp lệ của token và cập nhật giá trị của isTokenValid
-      return this.authService.checkTokenValidity(token).pipe(
-        map(data => {
-          return true;
-        }),
-        catchError(error => {
-          return this.authService.refreshToken(refreshToken).pipe(
-            map(data => {
-              this.tokenService.setToken(data.token);
-              return true;
-            }),
-            catchError(refreshError => {
-              localStorage.clear();
-              this.router.navigate(['/login']);
-              return of(false);
-            })
-          );
-        })
-      );
+    if (token) {
+      return true;
     } else {
       localStorage.clear();
       this.router.navigate(['/login']);
